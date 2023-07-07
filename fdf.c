@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/07 12:57:29 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/07 21:11:03 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	mlx_ptr = mlx_init(500, 600, "FdF (Jose M. Caballero)", true);
+	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
 	mlx_loop(mlx_ptr);
 }
