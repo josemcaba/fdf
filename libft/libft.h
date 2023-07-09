@@ -124,4 +124,9 @@ void	lst_free(t_glist **lst);
 void	mem_cpy_str(char *dst, char *src, size_t len);
 size_t	str_len(char *str, int *nl_flag);
 
+char	*ft_btoc(char *bits);
+char	*ft_ctob(char *chars);
+
+size_t	ft_wc(char const *str, char c);
+
 #endif

@@ -10,16 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-DEF_COLOR = \033[0;39m
-BLACK	  =	\033[0;30m
-RED		  =	\033[1;91m
-GREEN	  =	\033[1;92m
-YELLOW	  = \033[0;93m
-BLUE	  = \033[0;94m
-MAGENTA	  = \033[0;95m
-CYAN	  = \033[0;96m
-GRAY	  = \033[0;90m
-WHITE	  = \033[0;97m
 
 NAME = libft.a
 
@@ -44,7 +34,7 @@ SRC	= ft_isalpha.c		ft_isdigit.c			ft_isalnum.c		\
 	  pf_uint_convert.c	pf_flags_read.c			ft_htoa.c			\
 	  ft_uitoa.c		ft_putchar.c			ft_putstr.c			\
 	  get_next_line.c	get_next_line_utils.c	ft_atol.c			\
-	  ft_btoc.c			ft_ctob.c
+	  ft_btoc.c			ft_ctob.c				ft_wc.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -65,3 +55,14 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+DEF_COLOR = \033[0;39m
+BLACK	  =	\033[0;30m
+RED		  =	\033[1;91m
+GREEN	  =	\033[1;92m
+YELLOW	  = \033[0;93m
+BLUE	  = \033[0;94m
+MAGENTA	  = \033[0;95m
+CYAN	  = \033[0;96m
+GRAY	  = \033[0;90m
+WHITE	  = \033[0;97m

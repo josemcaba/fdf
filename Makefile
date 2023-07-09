@@ -54,6 +54,10 @@ fclean : clean
 
 re : fclean all
 
+test: 
+	gcc fdf.c read_map.c libft/libft.a -Wall -Werror -Wextra 
+	./a.exe test_maps/42.fdf
+
 .PHONY: all bonus clean fclean re
 
 DEF_COLOR = \033[0;39m

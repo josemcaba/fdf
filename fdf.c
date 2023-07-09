@@ -14,10 +14,24 @@
 
 int	main(int argc, char **argv)
 {
-	mlx_t	*mlx_ptr;
-
-	(void)argc;
-	(void)argv;
-	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
-	mlx_loop(mlx_ptr);
+	t_map	o_map;
+//	mlx_t	*mlx_ptr;
+	
+	if (argc != 2)
+	{
+		ft_printf("Please enter just one FDF MAP file\n");
+		return (0);
+	}
+	if (read_map(argv[1], &o_map) == EXIT_FAILURE)
+		return (0);
+	ft_printf("x_max = %d\ty_max = %d\n", o_map.x_max, o_map.y_max);
+	size_t	y, x;
+	for (y = 0; y <= o_map.y_max; y++)
+	{
+		for (x = 0; x<= o_map.x_max; x++)
+			ft_printf("%d ", o_map.p[x][y]);
+		ft_printf("\n");
+	}
+//	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
+//	mlx_loop(mlx_ptr);
 }
