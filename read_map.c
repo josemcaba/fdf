@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/08 11:05:47 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:34:28 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ void	measure_map(int fd, size_t *rows, size_t *columns)
 	}
 }
 
-void	free_map(t_map *map)
-{
-	while (map->x_max > 0)
-	{
-		free(map->p[map->x_max]);
-		map->x_max--;
-	}
-	free(map->p);
-}
-
 int	alloc_map(int fd, t_map *map)
 {
 	size_t	rows;
@@ -49,7 +39,7 @@ int	alloc_map(int fd, t_map *map)
 	close(fd);
 	if (!columns)
 		return (EXIT_FAILURE);
-	map->p = ft_calloc(columns, sizeof(int *));
+	map->p = malloc(columns * sizeof(int *));
 	if (!map->p)
 		return (EXIT_FAILURE);
 	map->y_max = rows - 1;
@@ -73,14 +63,12 @@ void	fill_row(t_map *map, int y, char *nbrs[])
 	size_t	x;
 
 	x = 0;
-	while ((*nbrs)[x])
+	while (nbrs[x])
 	{
-		ft_printf("%s\n", nbrs[x]);
 		map->p[x][y] = ft_atoi(nbrs[x]);
 		free(nbrs[x]);
 		x++;
 	}
-	free(nbrs[x]);
 	free(nbrs);
 }
 
@@ -91,10 +79,11 @@ int	fill_map(int fd, t_map *map)
 	size_t	row;
 
 	row = 0;
-	line = get_next_line(fd);
-	ft_printf("Uno\n");
-	while (line)
+	while (true)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		line[ft_strlen(line) - 1] = '\0';
 		nbrs = ft_split(line, ' ');
 		if (!nbrs)
@@ -105,8 +94,7 @@ int	fill_map(int fd, t_map *map)
 		}
 		fill_row(map, row, nbrs);
 		row++;
-		line = get_next_line(fd);
-		ft_printf("Dos\n");
+		free(line);
 	}
 	close (fd);
 	return (EXIT_SUCCESS);

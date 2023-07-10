@@ -6,12 +6,12 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/07/07 12:55:07 by jocaball         ###   ########.fr        #
+#    Updated: 2023/07/10 22:01:34 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = fdf.c
+SRC  = fdf.c read_map.c
 INC  = fdf.h
 
 LIBFT      = ./libft/libft.a
@@ -21,7 +21,7 @@ MLX42      = ./MLX42/libmlx42.a
 MAKE_MLX42 = @make -sC ./MLX42
 
 USER = $(shell whoami)
-GLFW = -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -39,7 +39,7 @@ $(MLX42):
 
 $(PNAME): $(LIBFT) $(MLX42) $(SRC) $(INC)
 	@$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME)
-	@echo "$(GREEN)\n-------> Program $(YELLOW)$(SNAME)$(GREEN) has been created\n$(DEF_COLOR)"
+	@echo "$(GREEN)\n-------> Program $(YELLOW)$(PNAME)$(GREEN) has been created\n$(DEF_COLOR)"
 
 bonus: $(NAME)
 
@@ -54,9 +54,8 @@ fclean : clean
 
 re : fclean all
 
-test: 
-	gcc fdf.c read_map.c libft/libft.a -Wall -Werror -Wextra 
-	./a.exe test_maps/42.fdf
+test: all
+	leaks -atExit -- ./fdf test_maps/42.fdf
 
 .PHONY: all bonus clean fclean re
 

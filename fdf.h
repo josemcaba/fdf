@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/07 13:56:56 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:55:07 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_map
 	size_t	x_max;
 	size_t	y_max;
 	int		scale;
-} t_map;
+}	t_map;
 
-
-int	read_map(char *fname, t_map *map);
+int		read_map(char *fname, t_map *map);
+void	free_map(t_map *map);
 #endif

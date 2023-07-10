@@ -3,3 +3,9 @@ fdf
 libft/libft.a
 libft/*.o
 a.exe
+*.dSYM
+.vscode
+Makefile---
+.gitignore
+ejemploMake.sh
+Makefile copy
