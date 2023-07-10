@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:22:50 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/08 12:22:50 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:28:52 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #include "libft.h"
 
-size_t ft_wc(char const *str, char c)
+size_t	ft_wc(char const *str, char c)
 {
 	size_t	count;
 	size_t	i;

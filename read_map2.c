@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/10 23:23:31 by jocaball         ###   ########.fr       */
+/*   Created: 2023/07/10 22:26:53 by jocaball          #+#    #+#             */
+/*   Updated: 2023/07/10 22:37:44 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+void	measure_map(int fd, size_t *rows, size_t *columns)
 {
-	t_map	org_map;
-	mlx_t	*mlx_ptr;
+	char	*line;
 
-	argc = 2;
-	argv[1] = "test_maps/42.fdf";
-	if (argc != 2)
+	*rows = 0;
+	*columns = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		ft_printf("Please enter just one FDF MAP file\n");
-		return (0);
+		(*rows)++;
+		if (ft_wc(line, ' ') > *columns)
+			*columns = ft_wc(line, ' ');
+		free(line);
+		line = get_next_line(fd);
 	}
-	if (read_map(argv[1], &org_map) == EXIT_FAILURE)
-		return (0);
-	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
-	mlx_loop(mlx_ptr);
-	free_map(&org_map);
+}
+
+void	fill_row(t_map *map, int y, char *nbrs[])
+{
+	size_t	x;
+
+	x = 0;
+	while (nbrs[x])
+	{
+		map->p[x][y] = ft_atoi(nbrs[x]);
+		free(nbrs[x]);
+		x++;
+	}
+	free(nbrs);
 }
