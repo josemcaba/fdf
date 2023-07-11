@@ -14,19 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	org_map;
+	t_map	map;
 	mlx_t	*mlx_ptr;
 
-	argc = 2;
-	argv[1] = "test_maps/42.fdf";
 	if (argc != 2)
 	{
 		ft_printf("Please enter just one FDF MAP file\n");
 		return (0);
 	}
-	if (read_map(argv[1], &org_map) == EXIT_FAILURE)
+	if (read_map(argv[1], &map) == EXIT_FAILURE)
 		return (0);
+	translate(map, 30, 30, 100);
 	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
 	mlx_loop(mlx_ptr);
-	free_map(&org_map);
+	free_map(&map);
 }

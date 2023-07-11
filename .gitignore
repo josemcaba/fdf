@@ -2,7 +2,7 @@
 fdf
 libft/libft.a
 libft/*.o
-a.exe
+*.exe
 *.dSYM
 .vscode
 Makefile---

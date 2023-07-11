@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	measure_map(int fd, size_t *rows, size_t *columns)
+void	measure_map(int fd, int *rows, int *columns)
 {
 	char	*line;
 
@@ -31,7 +31,7 @@ void	measure_map(int fd, size_t *rows, size_t *columns)
 
 void	fill_row(t_map *map, int y, char *nbrs[])
 {
-	size_t	x;
+	int	x;
 
 	x = 0;
 	while (nbrs[x])

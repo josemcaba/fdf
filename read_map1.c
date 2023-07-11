@@ -14,10 +14,10 @@
 
 void	free_map(t_map *map)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i <= map->x_max)
+	while (i < map->width)
 	{
 		free(map->p[i]);
 		i++;
@@ -29,7 +29,7 @@ int	fill_map(int fd, t_map *map)
 {
 	char	*line;
 	char	**nbrs;
-	size_t	row;
+	int		row;
 
 	row = 0;
 	while (true)
@@ -55,9 +55,9 @@ int	fill_map(int fd, t_map *map)
 
 int	alloc_map(int fd, t_map *map)
 {
-	size_t	rows;
-	size_t	columns;
-	size_t	i;
+	int	rows;
+	int	columns;
+	int	i;
 
 	measure_map(fd, &rows, &columns);
 	close(fd);
@@ -66,7 +66,7 @@ int	alloc_map(int fd, t_map *map)
 	map->p = malloc(columns * sizeof(int *));
 	if (!map->p)
 		return (EXIT_FAILURE);
-	map->y_max = rows - 1;
+	map->height = rows;
 	i = 0;
 	while (i < columns)
 	{
@@ -76,8 +76,8 @@ int	alloc_map(int fd, t_map *map)
 			free_map(map);
 			return (EXIT_FAILURE);
 		}
-		map->x_max = i;
 		i++;
+		map->width = i;
 	}
 	return (EXIT_SUCCESS);
 }
