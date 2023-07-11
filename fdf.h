@@ -21,14 +21,18 @@
 
 typedef struct s_map
 {
-	int	**p;
-	int	width;
-	int	height;
+	int		**p;
+	int		width;
+	int		height;
+	double	alpha;
+	double	beta;
+	int		scale;
+	int		z_scale;
 }	t_map;
 
 int		read_map(char *fname, t_map *map);
 void	free_map(t_map *map);
 void	fill_row(t_map *map, int y, char *nbrs[]);
 void	measure_map(int fd, int *rows, int *columns);
-void	translate(t_map map, double alpha, double beta, int scale);
+void	translate(t_map map);
 #endif

@@ -24,7 +24,11 @@ int	main(int argc, char **argv)
 	}
 	if (read_map(argv[1], &map) == EXIT_FAILURE)
 		return (0);
-	translate(map, 30, 30, 100);
+	map.alpha = 30;
+	map.beta = 30;
+	map.scale = 100;
+	map.z_scale = 1;
+	translate(map);
 	mlx_ptr = mlx_init(WIDTH, HEIGHT, "FdF by Jose M. Caballero", true);
 	mlx_loop(mlx_ptr);
 	free_map(&map);

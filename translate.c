@@ -12,27 +12,28 @@
 
 #include "fdf.h"
 
-void	translate(t_map map, double alpha, double beta, int scale)
+void	translate(t_map map)
 {
-	ssize_t	x;
-	ssize_t	y;
-	size_t	i;
-	size_t	j;
-	double	pi;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-	alpha = (M_PI / 180) * alpha;
-	beta = (M_PI / 180) * beta;
-	j = 0;
-	while (j < map.height)
+	map.alpha = (M_PI / 180) * map.alpha;
+	map.beta = (M_PI / 180) * map.beta;
+	i = 0;
+	while (i < map.width)
 	{
-		i = 0;
-		while (i < map.width)
+		j = 0;
+		while (j < map.height)
 		{
-			x = (i * cos(alpha) - j * cos(beta)) * scale;
-			y = (i * sin(alpha) + j * sin(beta) - map.p[i][j]) * scale;
+			x = i * cos(alpha) - j * cos(beta);
+			y = i * sin(alpha) + j * sin(beta) - map.p[i][j] * map.z_scale;
+			x *= map.scale;
+			y *= map.scale;
 			ft_printf("%d\t%d\n", x, y);
-			i++;
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
