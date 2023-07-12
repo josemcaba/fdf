@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/13 00:37:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/13 01:06:12 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,10 @@ void	ft_hook(void *param)
 
 void	set_limits(t_map *map, int x, int y)
 {
-	if (x > map->x_max)
-		map->x_max = x;
-	if (x < map->x_min)
-		map->x_min = x;
-	if (y > map->y_max)
-		map->y_max = y;
-	if (y < map->y_min)
-		map->y_min = y;
+	map->x_max = fmax(map->x_max, x);
+	map->x_min = fmin(map->x_min, x);
+	map->y_max = fmax(map->y_max, y);
+	map->y_min = fmin(map->y_min, y);
 }
 
 void	set_dimensions(t_map *map)
@@ -103,6 +99,6 @@ void	set_dimensions(t_map *map)
 		}
 		i++;
 	}
-	map->width = map->x_max - map->x_min + 1;
-	map->height = map->y_max - map->y_min + 1;
+	map->width = fdim(map->x_max, map->x_min) + 1;
+	map->height = fdim(map->y_max, map->y_min) + 1;
 }
