@@ -6,14 +6,14 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/12 22:53:23 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:41:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIDTH 1920
-# define HEIGHT 1024
+# define WIDTH 1024
+# define HEIGHT 576
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
@@ -27,7 +27,7 @@ typedef struct s_map
 	double		alpha;
 	double		beta;
 	int			scale;
-	int			z_scale;
+	float		z_scale;
 	int			x_max;
 	int			y_max;
 	int			x_min;

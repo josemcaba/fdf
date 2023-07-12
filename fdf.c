@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/12 23:11:37 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:39:48 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 void	init_map(t_map *map)
 {
-	map->alpha = M_PI / 6;
-	map->beta = M_PI / 6;
 	map->scale = 10;
 	map->z_scale = 1;
-	map->x_max = 0;
-	map->x_min = 0;
-	map->y_max = 0;
 	map->img = NULL;
 	map->string = NULL;
 }
@@ -38,7 +33,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	init_map(&map);
 	set_dimensions(&map);
-	map.mlx = mlx_init(map.width + 200, map.height + 200, \
+	map.mlx = mlx_init(WIDTH, HEIGHT, \
 			"FdF by Jose M. Caballero", true);
 	set_isometric(&map);
 	mlx_loop_hook(map.mlx, ft_draw, &map);
