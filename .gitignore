@@ -6,6 +6,6 @@ libft/*.o
 *.dSYM
 .vscode
 Makefile---
-.gitignore
 ejemploMake.sh
 Makefile copy
+42.xls

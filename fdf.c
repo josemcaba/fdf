@@ -24,8 +24,8 @@ int	main(int argc, char **argv)
 	}
 	if (read_map(argv[1], &map) == EXIT_FAILURE)
 		return (0);
-	map.alpha = 30;
-	map.beta = 30;
+	map.alpha = 0;
+	map.beta = 45;
 	map.scale = 100;
 	map.z_scale = 1;
 	translate(map);

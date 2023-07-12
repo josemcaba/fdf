@@ -27,10 +27,9 @@ void	translate(t_map map)
 		j = 0;
 		while (j < map.height)
 		{
-			x = i * cos(alpha) - j * cos(beta);
-			y = i * sin(alpha) + j * sin(beta) - map.p[i][j] * map.z_scale;
-			x *= map.scale;
-			y *= map.scale;
+			x = (i * cos(map.alpha) - j * cos(map.beta)) * map.scale;
+			y = (i * sin(map.alpha) + j * sin(map.beta) - \
+				map.p[i][j] * map.z_scale) * map.scale;
 			ft_printf("%d\t%d\n", x, y);
 			j++;
 		}
