@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/12 19:09:08 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:53:03 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ void	ft_draw(void *param)
 			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
 			y = (i * sin(map->alpha) + j * sin(map->beta) - \
 				map->p[i][j] * map->z_scale) * map->scale;
-			if (map->x_min < 0)
-				x = x - map->x_min;
-			if (map->y_min < 0)
-				y = y - map->y_min;
+			x = x - map->x_min;
+			y = y - map->y_min;
 			mlx_put_pixel(map->img, x, y, 0xaaaaaa);
 			j++;
 		}
@@ -48,11 +46,16 @@ void	ft_hook(void *param)
 	map = param;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(map->mlx);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-	{
-		map->alpha -= (M_PI / 12);
-		translate(map);
-	}
+	if (mlx_is_key_down(map->mlx, MLX_KEY_I))
+		set_isometric(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_M))
+		set_military(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
+		set_cavalier(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_SUBTRACT))
+		zoom_out(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
+		zoom_in(map);
 }
 
 void	set_limits(t_map *map, int x, int y)
@@ -67,7 +70,7 @@ void	set_limits(t_map *map, int x, int y)
 		map->y_min = y;
 }
 
-void	translate(t_map *map)
+void	set_dimensions(t_map *map)
 {
 	int	x;
 	int	y;
