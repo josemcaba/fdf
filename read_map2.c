@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map.c                                         :+:      :+:    :+:   */
+/*   read_map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:26:53 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/10 22:37:44 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:51:31 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	measure_map(int fd, int *rows, int *columns)
 	while (line)
 	{
 		(*rows)++;
-		if (ft_wc(line, ' ') > *columns)
+		if ((int)ft_wc(line, ' ') > *columns)
 			*columns = ft_wc(line, ' ');
 		free(line);
 		line = get_next_line(fd);

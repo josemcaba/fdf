@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/10 23:16:53 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:54:57 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_map(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < map->width)
+	while (i < map->columns)
 	{
 		free(map->p[i]);
 		i++;
@@ -66,7 +66,7 @@ int	alloc_map(int fd, t_map *map)
 	map->p = malloc(columns * sizeof(int *));
 	if (!map->p)
 		return (EXIT_FAILURE);
-	map->height = rows;
+	map->rows = rows;
 	i = 0;
 	while (i < columns)
 	{
@@ -77,7 +77,7 @@ int	alloc_map(int fd, t_map *map)
 			return (EXIT_FAILURE);
 		}
 		i++;
-		map->width = i;
+		map->columns = i;
 	}
 	return (EXIT_SUCCESS);
 }
