@@ -39,6 +39,12 @@ typedef struct s_map
 	mlx_image_t	*string;
 }	t_map;
 
+typedef struct s_point 
+{
+  int x;
+  int y;
+}	t_point;
+
 int		read_map(char *fname, t_map *map);
 void	free_map(t_map *map);
 void	fill_row(t_map *map, int y, char *nbrs[]);

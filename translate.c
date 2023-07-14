@@ -12,33 +12,6 @@
 
 #include "fdf.h"
 
-void	ft_draw(void *param)
-{
-	t_map	*map;
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-
-	map = param;
-	i = 0;
-	while (i < map->columns)
-	{
-		j = 0;
-		while (j < map->rows)
-		{
-			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			y = (i * sin(map->alpha) + j * sin(map->beta) - \
-				map->p[i][j] * map->z_scale) * map->scale;
-			x = x - map->x_min;
-			y = y - map->y_min;
-			mlx_put_pixel(map->img, x, y, 0xaaaaaa);
-			j++;
-		}
-		i++;
-	}
-}
-
 void	ft_hook(void *param)
 {
 	t_map	*map;
