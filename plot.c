@@ -32,24 +32,32 @@ void	plot_points(void *param)
 				map->p[i][j] * map->z_scale) * map->scale;
 			x = x - map->x_min;
 			y = y - map->y_min;
-			mlx_put_pixel(map->img, x, y, 0xaaaaaa);
+			mlx_put_pixel(map->img, x, y, map->color);
 			j++;
 		}
 		i++;
 	}
 }
 
+// Calcula la ecuacion de la recta (y=mx+n) que pasa por los dos 
+// puntos que se pasan como parámetros.
+// Con esa ecuación se representan todos los puntos (pixeles) del
+// intervalo cerrado [p1.x, p2.x]
+// @param p1 Primer extremo del segmento
+// @param p2 Segundo extremo del segmento
+// @param *map Estrutura de datos del mapa
 void 	plot_segment(t_point p1, t_point p2, t_map *map) 
 {
-	float		m;
-	float		n;
+	double	m;
+	double	n;
 	t_point	*points;
 
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
-	while (++p1.x < p2.x)
+	while (p1.x <= p2.x)
   	{
 		p1.y = m * p1.x + n;
-  		mlx_put_pixel(map->img, p1.x, p1.y, 0xaaaaaa);
+  		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+		p1.x++;
 	}    
 }

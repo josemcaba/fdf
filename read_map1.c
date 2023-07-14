@@ -92,7 +92,7 @@ int	open_map_file(char *fname)
 	return (fd);
 }
 
-int	read_map(char *fname, t_map *map)
+int	read_map_file(char *fname, t_map *map)
 {
 	int	fd;
 

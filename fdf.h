@@ -27,13 +27,14 @@ typedef struct s_map
 	double		alpha;
 	double		beta;
 	int			scale;
-	float		z_scale;
+	double		z_scale;
 	int			x_max;
 	int			y_max;
 	int			x_min;
 	int			y_min;
 	int			width;
 	int			height;
+	int			color;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	mlx_image_t	*string;
@@ -45,7 +46,7 @@ typedef struct s_point
   int y;
 }	t_point;
 
-int		read_map(char *fname, t_map *map);
+int		read_map_file(char *fname, t_map *map);
 void	free_map(t_map *map);
 void	fill_row(t_map *map, int y, char *nbrs[]);
 void	measure_map(int fd, int *rows, int *columns);

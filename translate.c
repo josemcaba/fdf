@@ -39,7 +39,7 @@ void	ft_hook(void *param)
 		map->img->instances[0].x += 5;
 }
 
-void	set_limits(t_map *map, int x, int y)
+void	update_limits(t_map *map, int x, int y)
 {
 	map->x_max = fmax(map->x_max, x);
 	map->x_min = fmin(map->x_min, x);
@@ -67,7 +67,7 @@ void	set_dimensions(t_map *map)
 			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
 			y = (i * sin(map->alpha) + j * sin(map->beta) - \
 				map->p[i][j] * map->z_scale) * map->scale;
-			set_limits(map, x, y);
+			update_limits(map, x, y);
 			j++;
 		}
 		i++;
