@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/13 00:41:13 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:59:46 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,21 @@
 # include <fcntl.h>
 # include <math.h>
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
 typedef struct s_map
 {
 	int			**p;
+	t_point		**point;
 	int			columns;
 	int			rows;
 	double		alpha;
 	double		beta;
-	int			scale;
+	double		scale;
 	double		z_scale;
 	int			x_max;
 	int			y_max;
@@ -40,19 +47,14 @@ typedef struct s_map
 	mlx_image_t	*string;
 }	t_map;
 
-typedef struct s_point 
-{
-  int x;
-  int y;
-}	t_point;
-
 int		read_map_file(char *fname, t_map *map);
-void	free_map(t_map *map);
+void	free_map(t_map *map, int n_point);
 void	fill_row(t_map *map, int y, char *nbrs[]);
 void	measure_map(int fd, int *rows, int *columns);
 void	set_dimensions(t_map *map);
 void	ft_hook(void *param);
-void	ft_draw(void *param);
+void	plot_points(void *param);
+void	plot_grid(void *param);
 void	set_isometric(t_map *map);
 void	set_military(t_map *map);
 void	set_cavalier(t_map *map);

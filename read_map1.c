@@ -6,13 +6,13 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/12 15:54:57 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:27:27 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_map(t_map *map)
+void	free_map(t_map *map, int n_point)
 {
 	int	i;
 
@@ -23,6 +23,12 @@ void	free_map(t_map *map)
 		i++;
 	}
 	free(map->p);
+	while (n_point)
+	{
+		n_point--;
+		free(map->point[n_point]);
+	}
+	free(map->point);
 }
 
 int	fill_map(int fd, t_map *map)
@@ -53,6 +59,26 @@ int	fill_map(int fd, t_map *map)
 	return (EXIT_SUCCESS);
 }
 
+int	alloc_points(t_map *map)
+{
+	int	i;
+
+	map->point = malloc(map->columns * sizeof(t_point *));
+	if (!map->point)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < map->columns)
+	{
+		map->point[i] = malloc(map->rows * sizeof(t_point));
+		if (!(map->point[i]))
+		{
+			free_map(map, i);
+			return (EXIT_FAILURE);
+		}
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
 int	alloc_map(int fd, t_map *map)
 {
 	int	rows;
@@ -73,7 +99,7 @@ int	alloc_map(int fd, t_map *map)
 		map->p[i] = ft_calloc(rows, sizeof(int));
 		if (!(map->p[i]))
 		{
-			free_map(map);
+			free_map(map, 0);
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -101,15 +127,17 @@ int	read_map_file(char *fname, t_map *map)
 		return (EXIT_FAILURE);
 	if (alloc_map(fd, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	if (alloc_points(map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	fd = open_map_file(fname);
 	if (fd < 0)
 	{
-		free_map(map);
+		free_map(map, 0);
 		return (EXIT_FAILURE);
 	}
 	if (fill_map(fd, map) == EXIT_FAILURE)
 	{
-		free_map(map);
+		free_map(map, map->columns);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

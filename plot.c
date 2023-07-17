@@ -6,38 +6,11 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/13 01:06:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:03:43 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	plot_points(void *param)
-{
-	t_map	*map;
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-
-	map = param;
-	i = 0;
-	while (i < map->columns)
-	{
-		j = 0;
-		while (j < map->rows)
-		{
-			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			y = (i * sin(map->alpha) + j * sin(map->beta) - \
-				map->p[i][j] * map->z_scale) * map->scale;
-			x = x - map->x_min;
-			y = y - map->y_min;
-			mlx_put_pixel(map->img, x, y, map->color);
-			j++;
-		}
-		i++;
-	}
-}
 
 // Calcula la ecuacion de la recta (y=mx+n) que pasa por los dos 
 // puntos que se pasan como parámetros.
@@ -46,18 +19,82 @@ void	plot_points(void *param)
 // @param p1 Primer extremo del segmento
 // @param p2 Segundo extremo del segmento
 // @param *map Estrutura de datos del mapa
-void 	plot_segment(t_point p1, t_point p2, t_map *map) 
+void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	double	m;
 	double	n;
-	t_point	*points;
 
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
-	while (p1.x <= p2.x)
-  	{
-		p1.y = m * p1.x + n;
-  		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
-		p1.x++;
-	}    
+	while (p1.x >= p2.x)
+	{
+		p1.y = (m * p1.x + n);
+//		ft_printf("(%d, %d)\n", p1.x, p1.y);
+		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+		p1.x--;
+	}
+}
+
+
+void	plot_grid(void *param)
+{
+	t_map	*map;
+	int		i;
+	int		j;
+
+	map = param;
+	i = 0;
+	while (i < map->columns)
+	{
+		j = 0;
+		while (j < (map->rows - 1))
+		{
+			plot_segment(map->point[i][j], map->point[i][j + 1], map);
+			j++;
+		}
+		i++;
+	}
+	j = 0;
+	while (j < map->rows)
+	{
+		i = 0;
+		while (i < (map->columns - 1))
+		{
+			ft_printf("(%d, %d)\n", map->point[i][j].x, map->point[i][j].y);
+			plot_segment(map->point[i][j], map->point[i + 1][j], map);
+			i++;
+		}
+		j++;
+	}	
+}
+
+
+void	plot_points(void *param)
+{
+	t_map	*map;
+	int		i;
+	int		j;
+	double	x;
+	double	y;
+
+	map = param;
+	i = 0;
+	while (i < map->columns)
+	{
+		j = 0;
+		while (j < map->rows)
+		{
+			x = (((double)i * cos(map->alpha) - (double)j * cos(map->beta)) * \
+					map->scale);
+			y = (((double)i * sin(map->alpha) + (double)j * sin(map->beta) - \
+				(double)map->p[i][j] * map->z_scale) * map->scale);
+			x = x - map->x_min;
+			y = y - map->y_min;
+			map->point[i][j].x = x;
+			map->point[i][j].y = y;
+			mlx_put_pixel(map->img, x, y, map->color);
+			j++;
+		}
+		i++;
+	}
 }

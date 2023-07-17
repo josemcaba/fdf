@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/13 01:06:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/17 14:06:24 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,19 @@ void	set_dimensions(t_map *map)
 	map->x_min = 0;
 	map->y_max = 0;
 	map->y_min = 0;
-	i = 0;
-	while (i < map->columns)
+	i = -1;
+	while (++i < map->columns)
 	{
 		j = 0;
 		while (j < map->rows)
 		{
-			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			y = (i * sin(map->alpha) + j * sin(map->beta) - \
-				map->p[i][j] * map->z_scale) * map->scale;
+			x = ((double)i * cos(map->alpha) - (double)j * cos(map->beta)) * \
+				map->scale;
+			y = ((double)i * sin(map->alpha) + (double)j * sin(map->beta) - \
+				(double)map->p[i][j] * map->z_scale) * map->scale;
 			update_limits(map, x, y);
 			j++;
 		}
-		i++;
 	}
 	map->width = fdim(map->x_max, map->x_min) + 1;
 	map->height = fdim(map->y_max, map->y_min) + 1;
