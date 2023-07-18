@@ -15,7 +15,7 @@
 // Calcula la ecuacion de la recta (y=mx+n) que pasa por los dos 
 // puntos que se pasan como parámetros.
 // Con esa ecuación se representan todos los puntos (pixeles) del
-// intervalo cerrado [p1.x, p2.x]
+// intervalo abierto (p1.x, p2.x)
 // @param p1 Primer extremo del segmento
 // @param p2 Segundo extremo del segmento
 // @param *map Estrutura de datos del mapa
@@ -25,13 +25,16 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 	double	n;
 
 	m = (p2.y - p1.y) / (p2.x - p1.x);
-	n = p1.y - (m * p1.x);
-	while (p1.x >= p2.x)
+	n = p1.y - (m * (double)p1.x);
+	while (p1.x - p2.x)
 	{
-		p1.y = (m * p1.x + n);
+		if (p1.x < p2.x)
+			p1.x++;
+		else
+			p1.x--;
+		p1.y = (m * (double)p1.x + n) + 0.5;
 //		ft_printf("(%d, %d)\n", p1.x, p1.y);
 		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
-		p1.x--;
 	}
 }
 

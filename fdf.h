@@ -21,8 +21,8 @@
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	uint32_t	x;
+	uint32_t	y;
 }	t_point;
 
 typedef struct s_map
