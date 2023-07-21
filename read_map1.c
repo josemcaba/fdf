@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/17 13:27:27 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:44:37 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	alloc_points(t_map *map)
 
 int	alloc_map(int fd, t_map *map)
 {
-	int	rows;
-	int	columns;
 	int	i;
 
 	measure_map(fd, map);

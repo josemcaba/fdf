@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/17 14:43:12 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:32:18 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	init_map(char *fname, t_map *map)
 	map->width = 0;
 	map->height = 0;
 	map->scale = 30;
-	map->z_scale = 0;
+	map->z_scale = 0.05;
 	map->color = 0xaaaaaa;
 	map->img = NULL;
 	map->string = NULL;
@@ -65,6 +65,8 @@ int	main(int argc, char **argv)
 {
 	t_map		map;
 
+	// argc = 2;
+	// argv[1] = "./test_maps/42.fdf";
 	if (argc != 2)
 	{
 		ft_printf("Please enter just one FDF MAP file.\n");

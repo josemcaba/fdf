@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/17 14:06:24 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:47:32 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ t_point translate_coord_to_point(t_map *map, int i, int j)
 		y = y + 0.5;
 	else 
 		y = y - 0.5;
+	point.x = x;
+	point.y = y;
+	return (point);
 }
 
 void	set_dimensions(t_map *map)

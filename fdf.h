@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/17 14:59:46 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:44:20 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_map
 int		read_map_file(char *fname, t_map *map);
 void	free_map(t_map *map, int n_points);
 void	fill_row(t_map *map, int y, char *nbrs[]);
-void	measure_map(int fd, int *rows, int *columns);
+void	measure_map(int fd, t_map *map);
 void	set_dimensions(t_map *map);
 void	ft_hook(void *param);
 void	plot_points(void *param);
