@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	open_new_window(t_map *map)
+static int	open_new_window(t_map *map)
 {
 	map->mlx = mlx_init(WIDTH, HEIGHT, \
 			"FdF by Jose M. Caballero", true);
@@ -24,18 +24,41 @@ int	open_new_window(t_map *map)
 	return (EXIT_SUCCESS);
 }
 
-int	init_map(char *fname, t_map *map)
+static int	init_map(char *fname, t_map *map)
 {
-	if (read_map_file(fname, map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	map->columns = 0;
+	map->rows = 0;
+	map->width = 0;
+	map->height = 0;
 	map->scale = 30;
 	map->z_scale = 0;
 	map->color = 0xaaaaaa;
 	map->img = NULL;
 	map->string = NULL;
+	if (read_map_file(fname, map) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	set_dimensions(map);
 	set_isometric(map);
 	return (EXIT_SUCCESS);
+}
+
+void	free_map(t_map *map, int n_points)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->columns)
+	{
+		free(map->coord[i]);
+		i++;
+	}
+	free(map->coord);
+	while (n_points)
+	{
+		n_points--;
+		free(map->point[n_points]);
+	}
+	free(map->point);
 }
 
 int	main(int argc, char **argv)

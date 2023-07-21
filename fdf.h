@@ -27,7 +27,7 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	int			**p;
+	int			**coord;
 	t_point		**point;
 	int			columns;
 	int			rows;
@@ -48,7 +48,7 @@ typedef struct s_map
 }	t_map;
 
 int		read_map_file(char *fname, t_map *map);
-void	free_map(t_map *map, int n_point);
+void	free_map(t_map *map, int n_points);
 void	fill_row(t_map *map, int y, char *nbrs[]);
 void	measure_map(int fd, int *rows, int *columns);
 void	set_dimensions(t_map *map);

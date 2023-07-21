@@ -12,25 +12,6 @@
 
 #include "fdf.h"
 
-void	free_map(t_map *map, int n_point)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->columns)
-	{
-		free(map->p[i]);
-		i++;
-	}
-	free(map->p);
-	while (n_point)
-	{
-		n_point--;
-		free(map->point[n_point]);
-	}
-	free(map->point);
-}
-
 int	fill_map(int fd, t_map *map)
 {
 	char	*line;
@@ -79,31 +60,31 @@ int	alloc_points(t_map *map)
 	}
 	return (EXIT_SUCCESS);
 }
+
 int	alloc_map(int fd, t_map *map)
 {
 	int	rows;
 	int	columns;
 	int	i;
 
-	measure_map(fd, &rows, &columns);
+	measure_map(fd, map);
 	close(fd);
-	if (!columns)
+	if (!map->columns)
 		return (EXIT_FAILURE);
-	map->p = malloc(columns * sizeof(int *));
-	if (!map->p)
+	map->coord = malloc(map->columns * sizeof(int *));
+	if (!map->coord)
 		return (EXIT_FAILURE);
-	map->rows = rows;
 	i = 0;
-	while (i < columns)
+	while (i < map->columns)
 	{
-		map->p[i] = ft_calloc(rows, sizeof(int));
-		if (!(map->p[i]))
+		map->coord[i] = ft_calloc(map->rows, sizeof(int));
+		if (!(map->coord[i]))
 		{
+			map->columns = i;
 			free_map(map, 0);
 			return (EXIT_FAILURE);
 		}
 		i++;
-		map->columns = i;
 	}
 	return (EXIT_SUCCESS);
 }

@@ -12,18 +12,18 @@
 
 #include "fdf.h"
 
-void	measure_map(int fd, int *rows, int *columns)
+void	measure_map(int fd, t_map *map)
 {
 	char	*line;
 
-	*rows = 0;
-	*columns = 0;
+	map->rows = 0;
+	map->columns = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		(*rows)++;
-		if ((int)ft_wc(line, ' ') > *columns)
-			*columns = ft_wc(line, ' ');
+		(map->rows)++;
+		if (ft_wc(line, ' ') > map->columns)
+			map->columns = ft_wc(line, ' ');
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -36,7 +36,7 @@ void	fill_row(t_map *map, int y, char *nbrs[])
 	x = 0;
 	while (nbrs[x])
 	{
-		map->p[x][y] = ft_atoi(nbrs[x]);
+		map->coord[x][y] = ft_atoi(nbrs[x]);
 		free(nbrs[x]);
 		x++;
 	}

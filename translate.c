@@ -47,6 +47,25 @@ void	update_limits(t_map *map, int x, int y)
 	map->y_min = fmin(map->y_min, y);
 }
 
+t_point translate_coord_to_point(t_map *map, int i, int j)
+{
+	t_point point;
+	double	x;
+	double	y;
+
+	x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
+	y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
+		map->z_scale) * map->scale;
+	if (x > 0)
+		x = x + 0.5;
+	else 
+		x = x - 0.5;
+	if (y > 0)
+		y = y + 0.5;
+	else 
+		y = y - 0.5;
+}
+
 void	set_dimensions(t_map *map)
 {
 	int	x;
@@ -64,10 +83,9 @@ void	set_dimensions(t_map *map)
 		j = 0;
 		while (j < map->rows)
 		{
-			x = ((double)i * cos(map->alpha) - (double)j * cos(map->beta)) * \
-				map->scale;
-			y = ((double)i * sin(map->alpha) + (double)j * sin(map->beta) - \
-				(double)map->p[i][j] * map->z_scale) * map->scale;
+			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
+			y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
+				map->z_scale) * map->scale;
 			update_limits(map, x, y);
 			j++;
 		}

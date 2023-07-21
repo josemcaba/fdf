@@ -87,14 +87,13 @@ void	plot_points(void *param)
 		j = 0;
 		while (j < map->rows)
 		{
-			x = (((double)i * cos(map->alpha) - (double)j * cos(map->beta)) * \
-					map->scale);
-			y = (((double)i * sin(map->alpha) + (double)j * sin(map->beta) - \
-				(double)map->p[i][j] * map->z_scale) * map->scale);
+			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
+			y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
+				map->z_scale) * map->scale;
 			x = x - map->x_min;
 			y = y - map->y_min;
-			map->point[i][j].x = x;
-			map->point[i][j].y = y;
+			map->point[i][j].x = x + 0.5;
+			map->point[i][j].y = y + 0.5;
 			mlx_put_pixel(map->img, x, y, map->color);
 			j++;
 		}
