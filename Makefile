@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/07/17 12:27:58 by jocaball         ###   ########.fr        #
+#    Updated: 2023/07/24 23:07:11 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ MLX42      = ./MLX42/libmlx42.a
 MAKE_MLX42 = @make -sC ./MLX42
 
 USER = $(shell whoami)
-GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+# GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+GLFW = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.3.dylib -lm 
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra

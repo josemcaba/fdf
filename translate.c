@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/21 12:47:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:11:32 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	ft_hook(void *param)
 		zoom_out(map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
 		zoom_in(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_U))
+		up(map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
+		down(map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
 		map->img->instances[0].y -= 5;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
@@ -58,11 +62,11 @@ t_point translate_coord_to_point(t_map *map, int i, int j)
 		map->z_scale) * map->scale;
 	if (x > 0)
 		x = x + 0.5;
-	else 
+	else
 		x = x - 0.5;
 	if (y > 0)
 		y = y + 0.5;
-	else 
+	else
 		y = y - 0.5;
 	point.x = x;
 	point.y = y;
@@ -71,8 +75,7 @@ t_point translate_coord_to_point(t_map *map, int i, int j)
 
 void	set_dimensions(t_map *map)
 {
-	int	x;
-	int	y;
+	t_point	point;
 	int	i;
 	int	j;
 
@@ -86,10 +89,11 @@ void	set_dimensions(t_map *map)
 		j = 0;
 		while (j < map->rows)
 		{
-			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
-				map->z_scale) * map->scale;
-			update_limits(map, x, y);
+			point = translate_coord_to_point(map, i, j);
+			// x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
+			// y = (i * sin(map->alpha) + j * sin(map->beta) - (map->coord[i][j] * \
+			// 	map->z_scale)) * map->scale;
+			update_limits(map, point.x, point.y);
 			j++;
 		}
 	}

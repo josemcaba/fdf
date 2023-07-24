@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/21 12:44:20 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:12:17 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	set_military(t_map *map);
 void	set_cavalier(t_map *map);
 void	zoom_out(t_map *map);
 void	zoom_in(t_map *map);
+void	up(t_map *map);
+void	down(t_map *map);
 #endif
