@@ -6,14 +6,14 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 00:12:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 01:06:54 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIDTH 1024
-# define HEIGHT 576
+# define WIDTH 1000
+# define HEIGHT 700
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>

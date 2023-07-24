@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 00:28:48 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:59:25 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	init_map(char *fname, t_map *map)
 	map->rows = 0;
 //	map->width = 0;
 //	map->height = 0;
-	map->scale = 50;
-	map->z_scale = 0.15;
-	map->color = 0xbbbbbbbb;
+	map->scale = 30;
+	map->z_scale = 0.08;
+	map->color = 0xaaaaaaaa;
 	map->img = NULL;
 	map->string = NULL;
 	if (read_map_file(fname, map) == EXIT_FAILURE)
