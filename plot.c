@@ -26,9 +26,8 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 	uint32_t	y_prev;
 
 	y_prev = p1.y;
-	m = ((double)p2.y - (double)p1.y) / ((double)p2.x - (double)p1.x);
-	n = (double)p1.y - (m * (double)p1.x);
-	p1.y = (m * (double)p1.x + n) + 0.5;
+	m = (p2.y - p1.y) / (p2.x - p1.x);
+	n = p1.y - (m * p1.x);
 	mlx_put_pixel(map->img, p1.x, p1.y, map->color);
 	while (p1.x - p2.x)
 	{
@@ -36,7 +35,7 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 			p1.x++;
 		else
 			p1.x--;
-		p1.y = (m * (double)p1.x + n) + 0.5;
+		p1.y = (m * p1.x + n) + 0.5;
 		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
 		while (++y_prev < p1.y)
 			mlx_put_pixel(map->img, p1.x, y_prev, map->color);
@@ -78,10 +77,9 @@ void	plot_grid(void *param)
 void	plot_points(void *param)
 {
 	t_map	*map;
+	t_point	point;
 	int		i;
 	int		j;
-	double	x;
-	double	y;
 
 	map = param;
 	i = 0;
@@ -90,14 +88,10 @@ void	plot_points(void *param)
 		j = 0;
 		while (j < map->rows)
 		{
-			x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
-				map->z_scale) * map->scale;
-			x = x - map->x_min;
-			y = y - map->y_min;
-			map->point[i][j].x = x + 0.5;
-			map->point[i][j].y = y + 0.5;
-			mlx_put_pixel(map->img, x, y, map->color);
+			point = translate_coord_to_point(map, i, j);
+			map->point[i][j].x = point.x - map->x_min;
+			map->point[i][j].y = point.y - map->y_min;
+			mlx_put_pixel(map->img, map->point[i][j].x, map->point[i][j].y, map->color);
 			j++;
 		}
 		i++;

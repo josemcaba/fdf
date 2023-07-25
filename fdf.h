@@ -21,8 +21,9 @@
 
 typedef struct s_point
 {
-	uint32_t	x;
-	uint32_t	y;
+	double	x;
+	double	y;
+	int		color;
 }	t_point;
 
 typedef struct s_map
@@ -62,4 +63,6 @@ void	zoom_out(t_map *map);
 void	zoom_in(t_map *map);
 void	up(t_map *map);
 void	down(t_map *map);
+t_point translate_coord_to_point(t_map *map, int i, int j);
+
 #endif

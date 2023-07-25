@@ -43,33 +43,31 @@ void	ft_hook(void *param)
 		map->img->instances[0].x += 5;
 }
 
-void	update_limits(t_map *map, int x, int y)
+void	update_limits(t_map *map, t_point point)
 {
-	map->x_max = fmax(map->x_max, x);
-	map->x_min = fmin(map->x_min, x);
-	map->y_max = fmax(map->y_max, y);
-	map->y_min = fmin(map->y_min, y);
+	map->x_max = fmax(map->x_max, point.x);
+	map->x_min = fmin(map->x_min, point.x);
+	map->y_max = fmax(map->y_max, point.y);
+	map->y_min = fmin(map->y_min, point.y);
 }
 
 t_point translate_coord_to_point(t_map *map, int i, int j)
 {
 	t_point point;
-	double	x;
-	double	y;
 
-	x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-	y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
-		map->z_scale) * map->scale;
-	if (x > 0)
-		x = x + 0.5;
+	point.x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
+	point.y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
+				map->z_scale) * map->scale;
+	if (point.x > 0)
+		point.x += 0.5;
 	else
-		x = x - 0.5;
-	if (y > 0)
-		y = y + 0.5;
+		point.x -= 0.5;
+	if (point.y > 0)
+		point.y += 0.5;
 	else
-		y = y - 0.5;
-	point.x = x;
-	point.y = y;
+		point.y -= 0.5;
+	point.x = (int)point.x;
+	point.y = (int)point.y;
 	return (point);
 }
 
@@ -90,10 +88,7 @@ void	set_dimensions(t_map *map)
 		while (j < map->rows)
 		{
 			point = translate_coord_to_point(map, i, j);
-			// x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-			// y = (i * sin(map->alpha) + j * sin(map->beta) - (map->coord[i][j] * \
-			// 	map->z_scale)) * map->scale;
-			update_limits(map, point.x, point.y);
+			update_limits(map, point);
 			j++;
 		}
 	}
