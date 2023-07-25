@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 00:36:15 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:19:12 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // @param p1 Primer extremo del segmento
 // @param p2 Segundo extremo del segmento
 // @param *map Estrutura de datos del mapa
-void	plot_segment(t_point p1, t_point p2, t_map *map)
+void	plot_line(t_point p1, t_point p2, t_map *map)
 {
 	double		m;
 	double		n;
@@ -44,6 +44,38 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 	}
 }
 
+void	plot_segment(t_point p1, t_point p2, t_map *map)
+{
+	if (p1.x == p2.x)
+	{
+		while (++p1.y < p2.y)
+			mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+	}
+	else
+		plot_line(p1, p2, map);
+}
+
+void	plot_triangles(void *param)
+{
+	t_map	*map;
+	int		i;
+	int		j;
+	int		color;
+
+	map = param;
+	color = map->color;
+	if (!map->triangles)
+		map->color = 0x0;
+	j = -1;
+	while (++j < map->rows - 1)
+	{
+		i = -1;
+		while (++i < (map->columns - 1))
+			plot_segment(map->point[i][j], map->point[i + 1][j + 1], map);
+	}
+	map->color = color;
+}
+
 void	plot_grid(void *param)
 {
 	t_map	*map;
@@ -51,30 +83,24 @@ void	plot_grid(void *param)
 	int		j;
 
 	map = param;
+	plot_triangles(map);
 	i = -1;
 	while (++i < map->columns)
 	{
-		j = 0;
-		while (j < (map->rows - 1))
-		{
+		j = -1;
+		while (++j < (map->rows - 1))
 			plot_segment(map->point[i][j], map->point[i][j + 1], map);
-			j++;
-		}
 	}
-	j = 0;
-	while (j < map->rows)
+	j = -1;
+	while (++j < map->rows)
 	{
-		i = 0;
-		while (i < (map->columns - 1))
-		{
+		i = -1;
+		while (++i < (map->columns - 1))
 			plot_segment(map->point[i][j], map->point[i + 1][j], map);
-			i++;
-		}
-		j++;
-	}	
+	}
 }
 
-void	plot_points(void *param)
+void	fill_points(void *param)
 {
 	t_map	*map;
 	t_point	point;
@@ -91,7 +117,6 @@ void	plot_points(void *param)
 			point = translate_coord_to_point(map, i, j);
 			map->point[i][j].x = point.x - map->x_min;
 			map->point[i][j].y = point.y - map->y_min;
-			mlx_put_pixel(map->img, map->point[i][j].x, map->point[i][j].y, map->color);
 			j++;
 		}
 		i++;

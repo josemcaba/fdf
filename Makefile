@@ -6,12 +6,12 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/07/24 23:07:11 by jocaball         ###   ########.fr        #
+#    Updated: 2023/07/25 17:51:19 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = fdf.c read_map1.c read_map2.c translate.c perspectives.c plot.c
+SRC  = fdf.c read_map1.c read_map2.c translate.c perspectives.c plot.c views.c hooks.c
 INC  = fdf.h
 
 LIBFT      = ./libft/libft.a

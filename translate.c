@@ -6,42 +6,11 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 00:11:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:47:28 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	ft_hook(void *param)
-{
-	t_map	*map;
-
-	map = param;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(map->mlx);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_1))
-		set_isometric(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_2))
-		set_military(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_3))
-		set_cavalier(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_SUBTRACT))
-		zoom_out(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
-		zoom_in(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_U))
-		up(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-		down(map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-		map->img->instances[0].y -= 5;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-		map->img->instances[0].y += 5;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->img->instances[0].x -= 5;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->img->instances[0].x += 5;
-}
 
 void	update_limits(t_map *map, t_point point)
 {
@@ -51,9 +20,9 @@ void	update_limits(t_map *map, t_point point)
 	map->y_min = fmin(map->y_min, point.y);
 }
 
-t_point translate_coord_to_point(t_map *map, int i, int j)
+t_point	translate_coord_to_point(t_map *map, int i, int j)
 {
-	t_point point;
+	t_point	point;
 
 	point.x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
 	point.y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
@@ -74,8 +43,8 @@ t_point translate_coord_to_point(t_map *map, int i, int j)
 void	set_dimensions(t_map *map)
 {
 	t_point	point;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	map->x_max = 0;
 	map->x_min = 0;
