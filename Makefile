@@ -6,12 +6,13 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/07/25 17:51:19 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/07 17:18:26 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = fdf.c read_map1.c read_map2.c translate.c perspectives.c plot.c views.c hooks.c
+SRC  = 	fdf.c read_map1.c read_map2.c translate.c perspectives.c plot.c \
+		views.c hooks.c colors.c menu.c rotations.c
 INC  = fdf.h
 
 LIBFT      = ./libft/libft.a
@@ -21,11 +22,10 @@ MLX42      = ./MLX42/libmlx42.a
 MAKE_MLX42 = @make -sC ./MLX42
 
 USER = $(shell whoami)
-# GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-GLFW = /Users/$(USER)/.brew/opt/glfw/lib/libglfw.3.3.dylib -lm 
+GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
 
 all : $(PNAME) 
 

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 19:28:49 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:11:26 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	pressed_keys_2(void *param)
 		map->triangles = 1;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_S))
 		map->triangles = 0;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_L))
+		rotate(map, -1);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_R))
+		rotate(map, +1);
 }
 
 void	pressed_keys(void *param)

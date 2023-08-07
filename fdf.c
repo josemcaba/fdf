@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 20:14:58 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:52:02 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ static int	init_map(char *fname, t_map *map)
 	map->columns = 0;
 	map->rows = 0;
 	map->scale = 1;
-	map->z_scale = 0.08;
+	map->z_scale = 0.085;
 	map->color = 0xaaaaaa;
 	map->triangles = 0;
 	map->img = NULL;
 	map->string = NULL;
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	set_menu(map);
 	set_isometric_init(map);
 	return (EXIT_SUCCESS);
 }

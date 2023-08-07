@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/25 20:34:02 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:48:04 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 # define WIDTH 1500
 # define HEIGHT 1000
+# define LEFT_MARGIN 250
+# define UPPER_MARGIN 100
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
@@ -25,6 +27,20 @@ typedef struct s_point
 	double	y;
 	int		color;
 }	t_point;
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
+typedef struct s_delta_color
+{
+	float	red;
+	float	green;
+	float	blue;
+}	t_delta_color;
 
 typedef struct s_map
 {
@@ -66,5 +82,7 @@ void	zoom_in(t_map *map);
 void	up(t_map *map);
 void	down(t_map *map);
 t_point	translate_coord_to_point(t_map *map, int i, int j);
+void	set_menu(t_map *map);
+void	rotate(t_map *map, int direction);
 
 #endif
