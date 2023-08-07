@@ -26,9 +26,9 @@ int	*color_gradient(int init_color, int end_color, int steps)
 	gradient = (int *)malloc(sizeof(int) * (steps + 1));
 	if (gradient == NULL)
 		return (NULL);
-	color1.red = (init_color & 0xFF0000) >> 16;
-	color1.green = (init_color & 0x00FF00) >> 8;
-	color1.blue = init_color & 0x0000FF;
+	color1.red = init_color >> 16;
+	color1.green = (init_color >> 8) & 0xFF;
+	color1.blue = init_color & 0xFF;
 	color2.red = (end_color & 0xFF0000) >> 16;
 	color2.green = (end_color & 0x00FF00) >> 8;
 	color2.blue = end_color & 0x0000FF;
