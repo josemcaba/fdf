@@ -25,6 +25,8 @@ typedef struct s_point
 {
 	double	x;
 	double	y;
+	double	theta;
+	double	r;
 	int		color;
 }	t_point;
 

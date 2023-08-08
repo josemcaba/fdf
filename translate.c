@@ -23,10 +23,13 @@ void	update_limits(t_map *map, t_point point)
 t_point	translate_coord_to_point(t_map *map, int i, int j)
 {
 	t_point	point;
+	int		k;
 
+	k = map->coord[i][j] * map->z_scale;
 	point.x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
-	point.y = (i * sin(map->alpha) + j * sin(map->beta) - map->coord[i][j] * \
-				map->z_scale) * map->scale;
+	point.y = (i * sin(map->alpha) + j * sin(map->beta) - k) * map->scale;
+	point.r = sqrt(pow(i, 2) + pow(j, 2)) * map->scale;
+	point.theta = atan2(j, i);
 	if (point.x > 0)
 		point.x += 0.5;
 	else
