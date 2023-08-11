@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/07 18:07:22 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:49:20 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	if (p1.x == p2.x)
 	{
-		while (++p1.y < p2.y)
-			mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+		if (p1.y < p2.y)
+			while (++p1.y < p2.y)
+				mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+		else
+			while (--p1.y > p2.y)
+		 		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
 	}
 	else
 		plot_line(p1, p2, map);
@@ -117,6 +121,8 @@ void	fill_points(void *param)
 			point = translate_coord_to_point(map, i, j);
 			map->point[i][j].x = point.x - map->x_min;
 			map->point[i][j].y = point.y - map->y_min;
+			map->point[i][j].r = point.r;
+			map->point[i][j].theta = point.theta;
 			j++;
 		}
 		i++;

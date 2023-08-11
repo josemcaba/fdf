@@ -6,31 +6,22 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 22:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 15:05:03 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:52:39 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // Para borrar
-#include <stdio.h>
+#include <stdio.h> //Para borrar
 
 void	rotate(t_map *map, int direction)
 {
 	map->alpha += (direction * M_PI / 180) * 0.2;
+	map->alpha = fmod(map->alpha, 2 * M_PI);
 	map->beta -= (direction * M_PI / 180) * 0.2;
-	if (map->alpha < 0)
-	{
-		map->beta += map->alpha;
-		map->alpha = 0;
-	}
-	if (map->beta < 0)
-	{
-		map->alpha += map->beta;
-		map->beta = 0;
-	}
-	printf("Alpha = %5.2f\n", map->alpha * 180 / M_PI);
-	printf("Beta  = %5.2f\n\n", map->beta * 180 / M_PI);
+	map->beta = fmod(map->beta, 2 * M_PI);
+	printf("%f, %f\n", map->alpha, map->beta);
 	set_dimensions(map);
 	mlx_delete_image(map->mlx, map->img);
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
@@ -41,7 +32,7 @@ void	rotate_points(t_map *map, int direction)
 {
 	int		i;
 	int		j;
-	int		k;
+	double	k;
 	double	di;
 	double	dj;
 
@@ -51,7 +42,7 @@ void	rotate_points(t_map *map, int direction)
 		j = 0;
 		while (j < map->rows)
 		{
-			map->point[i][j].theta += direction * M_PI / 180;
+			map->point[i][j].theta += direction * M_PI / 180 * 5;
 			di = map->point[i][j].r * cos(map->point[i][j].theta);
 			dj = map->point[i][j].r * sin(map->point[i][j].theta);
 			k = map->coord[i][j] * map->z_scale;
