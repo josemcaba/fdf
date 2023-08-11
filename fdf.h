@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/07 17:48:04 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:45:15 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	down(t_map *map);
 t_point	translate_coord_to_point(t_map *map, int i, int j);
 void	set_menu(t_map *map);
 void	rotate(t_map *map, int direction);
+void	rotate_points(t_map *map, int direction);
 
 #endif

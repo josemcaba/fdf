@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/07 16:52:31 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/11 14:56:48 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	update_limits(t_map *map, t_point point)
 t_point	translate_coord_to_point(t_map *map, int i, int j)
 {
 	t_point	point;
-	int		k;
+	double	k;
 
 	k = map->coord[i][j] * map->z_scale;
 	point.x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
