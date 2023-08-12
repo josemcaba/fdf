@@ -28,16 +28,18 @@ static int	init_map(char *fname, t_map *map)
 {
 	map->columns = 0;
 	map->rows = 0;
-	map->scale = 1;
+	map->width = 0;
+	map->height = 0;
+	map->scale = 0;
 	map->z_scale = 0.08;
 	map->color = 0xaaaaaa;
 	map->triangles = 0;
 	map->img = NULL;
-	map->string = NULL;
+	map->menu = NULL;
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	set_menu(map);
-	set_isometric_init(map);
+	set_initial_scale(map);
 	return (EXIT_SUCCESS);
 }
 
@@ -73,8 +75,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (init_map(argv[1], &map) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
-	mlx_loop_hook(map.mlx, fill_points, &map);
-	mlx_loop_hook(map.mlx, plot_grid, &map);
+//	mlx_loop_hook(map.mlx, fill_points, &map);
+//	mlx_loop_hook(map.mlx, plot_grid, &map);
 	mlx_loop_hook(map.mlx, pressed_keys, &map);
 	mlx_loop(map.mlx);
 	mlx_terminate(map.mlx);

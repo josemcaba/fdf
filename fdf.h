@@ -64,18 +64,18 @@ typedef struct s_map
 	int			triangles;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*string;
+	mlx_image_t	*menu;
 }	t_map;
 
 int		read_map_file(char *fname, t_map *map);
 void	free_map(t_map *map, int n_points);
 void	fill_row(t_map *map, int y, char *nbrs[]);
 void	measure_map(int fd, t_map *map);
-void	set_dimensions(t_map *map);
 void	pressed_keys(void *param);
-void	fill_points(void *param);
+void	fill_points(t_map *map);
 void	plot_grid(void *param);
-void	set_isometric_init(t_map *map);
+//void	set_dimensions(t_map *map);
+void	set_initial_scale(t_map *map);
 void	set_isometric(t_map *map);
 void	set_military(t_map *map);
 void	set_cavalier(t_map *map);
@@ -87,5 +87,7 @@ t_point	translate_coord_to_point(t_map *map, int i, int j);
 void	set_menu(t_map *map);
 void	rotate(t_map *map, int direction);
 void	rotate_points(t_map *map, int direction);
+void	reset_limits(t_map *map);
+void	update_limits(t_map *map, t_point point);
 
 #endif

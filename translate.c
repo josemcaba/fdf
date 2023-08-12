@@ -12,6 +12,14 @@
 
 #include "fdf.h"
 
+void	reset_limits(t_map *map)
+{
+	map->x_max = 0;
+	map->x_min = 0;
+	map->y_max = 0;
+	map->y_min = 0;
+}
+
 void	update_limits(t_map *map, t_point point)
 {
 	map->x_max = fmax(map->x_max, point.x);
@@ -43,27 +51,48 @@ t_point	translate_coord_to_point(t_map *map, int i, int j)
 	return (point);
 }
 
-void	set_dimensions(t_map *map)
+void	zero_adjust(t_map *map)
 {
-	t_point	point;
 	int		i;
 	int		j;
 
-	map->x_max = 0;
-	map->x_min = 0;
-	map->y_max = 0;
-	map->y_min = 0;
 	i = -1;
 	while (++i < map->columns)
 	{
 		j = 0;
 		while (j < map->rows)
 		{
-			point = translate_coord_to_point(map, i, j);
-			update_limits(map, point);
+			map->point[i][j].x -= map->x_min;
+			map->point[i][j].y -= map->y_min;
 			j++;
 		}
 	}
+}
+
+void	fill_points(t_map	*map)
+{
+	t_point	point;
+	int		i;
+	int		j;
+
+	reset_limits(map);
+	i = 0;
+	while (i < map->columns)
+	{
+		j = 0;
+		while (j < map->rows)
+		{
+			point = translate_coord_to_point(map, i, j);
+			update_limits(map, point);
+			map->point[i][j].x = point.x;
+			map->point[i][j].y = point.y;
+			map->point[i][j].r = point.r;
+			map->point[i][j].theta = point.theta;
+			j++;
+		}
+		i++;
+	}
 	map->width = fdim(map->x_max, map->x_min) + 1;
 	map->height = fdim(map->y_max, map->y_min) + 1;
+	zero_adjust(map);
 }

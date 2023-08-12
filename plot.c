@@ -53,7 +53,7 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 				mlx_put_pixel(map->img, p1.x, p1.y, map->color);
 		else
 			while (--p1.y > p2.y)
-		 		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+				mlx_put_pixel(map->img, p1.x, p1.y, map->color);
 	}
 	else
 		plot_line(p1, p2, map);
@@ -87,6 +87,8 @@ void	plot_grid(void *param)
 	int		j;
 
 	map = param;
+	ft_memset(map->img->pixels, 0, map->img->width * \
+	map->img->height * sizeof(int));
 	plot_triangles(map);
 	i = -1;
 	while (++i < map->columns)
@@ -101,30 +103,5 @@ void	plot_grid(void *param)
 		i = -1;
 		while (++i < (map->columns - 1))
 			plot_segment(map->point[i][j], map->point[i + 1][j], map);
-	}
-}
-
-void	fill_points(void *param)
-{
-	t_map	*map;
-	t_point	point;
-	int		i;
-	int		j;
-
-	map = param;
-	i = 0;
-	while (i < map->columns)
-	{
-		j = 0;
-		while (j < map->rows)
-		{
-			point = translate_coord_to_point(map, i, j);
-			map->point[i][j].x = point.x - map->x_min;
-			map->point[i][j].y = point.y - map->y_min;
-			map->point[i][j].r = point.r;
-			map->point[i][j].theta = point.theta;
-			j++;
-		}
-		i++;
 	}
 }

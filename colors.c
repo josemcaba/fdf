@@ -42,4 +42,3 @@ int	*color_gradient(int init_color, int end_color, int steps)
 					| (color1.blue + (int)(delta.blue * i));
 	return (gradient);
 }
-

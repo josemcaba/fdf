@@ -21,11 +21,9 @@ void	rotate(t_map *map, int direction)
 	map->alpha = fmod(map->alpha, 2 * M_PI);
 	map->beta -= (direction * M_PI / 180) * 0.2;
 	map->beta = fmod(map->beta, 2 * M_PI);
-	printf("%f, %f\n", map->alpha, map->beta);
-	set_dimensions(map);
-	mlx_delete_image(map->mlx, map->img);
-	map->img = mlx_new_image(map->mlx, map->width, map->height);
-	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
+	fill_points(map);
+	mlx_resize_image(map->img, map->width, map->height);
+	plot_grid(map);
 }
 
 void	rotate_points(t_map *map, int direction)
@@ -61,8 +59,7 @@ void	rotate_points(t_map *map, int direction)
 			j++;
 		}
 	}
-	set_dimensions(map);
-	mlx_delete_image(map->mlx, map->img);
-	map->img = mlx_new_image(map->mlx, map->width, map->height);
-	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
+	fill_points(map);
+	mlx_resize_image(map->img, map->width, map->height);
+	plot_grid(map);
 }
