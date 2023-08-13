@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 16:50:08 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 16:12:34 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,23 @@ void	pressed_keys(void *param)
 	if (mlx_is_key_down(map->mlx, MLX_KEY_3))
 		set_cavalier(map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_SUBTRACT))
-		zoom_out(map);
+		if (map->scale > 0)
+			map->scale /= 1.01;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
-		zoom_in(map);
+		map->scale *= 1.01;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_U))
-		up(map);
+		map->z_scale += 0.001;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-		down(map);
+		map->z_scale -= 0.001;
 	pressed_keys_2(map);
+}
+
+void	render_img(void *param)
+{
+	t_map	*map;
+
+	map = param;
+	fill_points(map);
+	mlx_resize_image(map->img, map->width, map->height);
+	plot_grid(map);
 }

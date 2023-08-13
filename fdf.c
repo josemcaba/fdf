@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 15:05:53 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:58:38 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	init_map(char *fname, t_map *map)
 		return (EXIT_FAILURE);
 	set_menu(map);
 	set_initial_scale(map);
+	map->img = mlx_new_image(map->mlx, map->width, map->height);
+	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
 	return (EXIT_SUCCESS);
 }
 
@@ -75,8 +77,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (init_map(argv[1], &map) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
-//	mlx_loop_hook(map.mlx, fill_points, &map);
-//	mlx_loop_hook(map.mlx, plot_grid, &map);
+	set_isometric(&map);
+	mlx_loop_hook(map.mlx, render_img, &map);
 	mlx_loop_hook(map.mlx, pressed_keys, &map);
 	mlx_loop(map.mlx);
 	mlx_terminate(map.mlx);

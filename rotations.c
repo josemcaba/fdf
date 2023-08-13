@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 22:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 17:52:39 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 15:44:04 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	rotate(t_map *map, int direction)
 	map->alpha = fmod(map->alpha, 2 * M_PI);
 	map->beta -= (direction * M_PI / 180) * 0.2;
 	map->beta = fmod(map->beta, 2 * M_PI);
-	fill_points(map);
-	mlx_resize_image(map->img, map->width, map->height);
-	plot_grid(map);
 }
 
 void	rotate_points(t_map *map, int direction)
@@ -59,7 +56,4 @@ void	rotate_points(t_map *map, int direction)
 			j++;
 		}
 	}
-	fill_points(map);
-	mlx_resize_image(map->img, map->width, map->height);
-	plot_grid(map);
 }

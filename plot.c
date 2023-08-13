@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 17:49:20 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 16:07:22 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,12 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 		plot_line(p1, p2, map);
 }
 
-void	plot_triangles(void *param)
+void	plot_triangles(t_map *map)
 {
-	t_map	*map;
 	int		i;
 	int		j;
 	int		color;
 
-	map = param;
 	color = map->color;
 	if (!map->triangles)
 		map->color = 0x0;
@@ -80,13 +78,11 @@ void	plot_triangles(void *param)
 	map->color = color;
 }
 
-void	plot_grid(void *param)
+void	plot_grid(t_map	*map)
 {
-	t_map	*map;
 	int		i;
 	int		j;
 
-	map = param;
 	ft_memset(map->img->pixels, 0, map->img->width * \
 	map->img->height * sizeof(int));
 	plot_triangles(map);
