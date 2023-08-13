@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 17:51:49 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:04:07 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_color
 	int	red;
 	int	green;
 	int	blue;
+	int	alpha;
 }	t_color;
 
 typedef struct s_delta_color
@@ -41,6 +42,7 @@ typedef struct s_delta_color
 	float	red;
 	float	green;
 	float	blue;
+	float	alpha;
 }	t_delta_color;
 
 typedef struct s_map
@@ -60,6 +62,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			color;
+	int			*grad;
 	int			triangles;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -84,5 +87,6 @@ void	rotate(t_map *map, int direction);
 void	rotate_points(t_map *map, int direction);
 void	reset_limits(t_map *map);
 void	update_limits(t_map *map, t_point point);
+int		*color_gradient(int init_color, int end_color, int steps);
 
 #endif

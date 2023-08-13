@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 20:52:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 17:05:30 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:31:27 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,23 @@ int	*color_gradient(int init_color, int end_color, int steps)
 	gradient = (int *)malloc(sizeof(int) * (steps + 1));
 	if (gradient == NULL)
 		return (NULL);
-	color1.red = init_color >> 16;
-	color1.green = (init_color >> 8) & 0xFF;
-	color1.blue = init_color & 0xFF;
-	color2.red = (end_color & 0xFF0000) >> 16;
-	color2.green = (end_color & 0x00FF00) >> 8;
-	color2.blue = end_color & 0x0000FF;
+	color1.red = init_color >> 24;
+	color1.green = (init_color >> 16) & 0xFF;
+	color1.blue = (init_color >> 8) & 0xFF;
+	color1.alpha = init_color & 0xFF;
+	color2.red = end_color >> 24;
+	color2.green = (end_color >> 16) & 0xFF;
+	color2.blue = (end_color >> 8) & 0xFF;
+	color2.alpha = end_color & 0xFF;
 	delta.red = (color2.red - color1.red) / (float)steps;
 	delta.green = (color2.green - color1.green) / (float)steps;
 	delta.blue = (color2.blue - color1.blue) / (float)steps;
+	delta.alpha = (color2.alpha - color1.alpha) / (float)steps;
 	i = -1;
 	while (++i <= steps)
-		gradient[i] = ((color1.red + (int)(delta.red * i)) << 16) \
-					| ((color1.green + (int)(delta.green * i)) << 8) \
-					| (color1.blue + (int)(delta.blue * i));
+		gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
+					| ((color1.green + (int)(delta.green * i)) << 16) \
+					| ((color1.blue + (int)(delta.blue * i)) << 8) \
+					| (color1.alpha + (int)(delta.alpha * 1));
 	return (gradient);
 }
