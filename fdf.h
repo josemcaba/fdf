@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 16:02:38 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:51:49 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct s_point
 {
 	double	x;
 	double	y;
-	double	theta;
-	double	r;
+	int		h;
 	int		color;
 }	t_point;
 

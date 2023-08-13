@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/11 15:37:00 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:17:19 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ t_point	translate_coord_to_point(t_map *map, int i, int j)
 	k = map->coord[i][j] * map->z_scale;
 	point.x = (i * cos(map->alpha) - j * cos(map->beta)) * map->scale;
 	point.y = (i * sin(map->alpha) + j * sin(map->beta) - k) * map->scale;
-	point.r = sqrt(pow(i, 2) + pow(j, 2)) * map->scale;
-	point.theta = atan2(j, i);
 	if (point.x > 0)
 		point.x += 0.5;
 	else
@@ -86,8 +84,7 @@ void	fill_points(t_map	*map)
 			update_limits(map, point);
 			map->point[i][j].x = point.x;
 			map->point[i][j].y = point.y;
-			map->point[i][j].r = point.r;
-			map->point[i][j].theta = point.theta;
+			map->point[i][j].color = point.color;
 			j++;
 		}
 		i++;

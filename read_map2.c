@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:26:53 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/21 12:45:49 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 18:18:36 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void	measure_map(int fd, t_map *map)
 	}
 }
 
+int	set_color(int height)
+{
+	if (height == 0)
+		return (0xff00ffff);
+	return (0x00ff00ff);
+}
+
 void	fill_row(t_map *map, int y, char *nbrs[])
 {
 	int	x;
@@ -37,6 +44,8 @@ void	fill_row(t_map *map, int y, char *nbrs[])
 	while (nbrs[x])
 	{
 		map->coord[x][y] = ft_atoi(nbrs[x]);
+		map->point[x][y].h = map->coord[x][y];
+		map->point[x][y].color = set_color(map->coord[x][y]);
 		free(nbrs[x]);
 		x++;
 	}

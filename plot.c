@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 16:07:22 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:58:02 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 
 void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
+	map->color = p1.color;
+	if (p2.h > p1.h)
+		map->color = p2.color;
 	if (p1.x == p2.x)
 	{
 		if (p1.y < p2.y)
@@ -63,11 +66,7 @@ void	plot_triangles(t_map *map)
 {
 	int		i;
 	int		j;
-	int		color;
 
-	color = map->color;
-	if (!map->triangles)
-		map->color = 0x0;
 	j = -1;
 	while (++j < map->rows - 1)
 	{
@@ -75,7 +74,6 @@ void	plot_triangles(t_map *map)
 		while (++i < (map->columns - 1))
 			plot_segment(map->point[i][j], map->point[i + 1][j + 1], map);
 	}
-	map->color = color;
 }
 
 void	plot_grid(t_map	*map)
@@ -85,7 +83,8 @@ void	plot_grid(t_map	*map)
 
 	ft_memset(map->img->pixels, 0, map->img->width * \
 	map->img->height * sizeof(int));
-	plot_triangles(map);
+	if (map->triangles)
+		plot_triangles(map);
 	i = -1;
 	while (++i < map->columns)
 	{
