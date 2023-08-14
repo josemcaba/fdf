@@ -78,8 +78,8 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 	if (p1.x == p2.x)
 		steps = fabs(p1.y - p2.y);
 	else
-		steps = steps_counter(p1, p2, map);
-	map->grad = color_gradient(p1.color, p2.color, steps);
+		steps = steps_counter(p1, p2);
+	map->grad = color_gradient(p1.color, p2.color, steps, map);
 	i = -1;
 	if (p1.x == p2.x)
 	{

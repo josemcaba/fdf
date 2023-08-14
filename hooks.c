@@ -18,13 +18,13 @@ void	pressed_keys_2(void *param)
 
 	map = param;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-		map->img->instances[0].y -= 5;
+		map->img->instances[0].y -= 3;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-		map->img->instances[0].y += 5;
+		map->img->instances[0].y += 3;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->img->instances[0].x -= 5;
+		map->img->instances[0].x -= 3;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->img->instances[0].x += 5;
+		map->img->instances[0].x += 3;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_T))
 		map->triangles = 1;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_S))
@@ -57,6 +57,10 @@ void	pressed_keys(void *param)
 		map->z_scale += 0.001;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 		map->z_scale -= 0.001;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_F))
+		map->flat_color = TRUE;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_P))
+		map->flat_color = FALSE;
 	pressed_keys_2(map);
 }
 

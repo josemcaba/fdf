@@ -32,7 +32,7 @@ static int	init_map(char *fname, t_map *map)
 	map->height = 0;
 	map->scale = 0;
 	map->z_scale = 0.08;
-	map->color = 0xaaaaaa;
+	map->flat_color = TRUE;
 	map->triangles = 0;
 	map->img = NULL;
 	map->menu = NULL;

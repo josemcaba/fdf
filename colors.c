@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	steps_counter(t_point p1, t_point p2, t_map *map)
+int	steps_counter(t_point p1, t_point p2)
 {
 	int			steps;
 	double		m;
@@ -42,17 +42,12 @@ int	steps_counter(t_point p1, t_point p2, t_map *map)
 	return (steps);
 }
 
-int	*color_gradient(int init_color, int end_color, int steps)
+t_delta_color get_delta(int init_color, int end_color, int steps)
 {
-	int				*gradient;
 	t_color			color1;
 	t_color			color2;
 	t_delta_color	delta;
-	int				i;
 
-	gradient = (int *)malloc(sizeof(int) * (steps + 1));
-	if (gradient == NULL)
-		return (NULL);
 	color1.red = init_color >> 24;
 	color1.green = (init_color >> 16) & 0xFF;
 	color1.blue = (init_color >> 8) & 0xFF;
@@ -65,12 +60,34 @@ int	*color_gradient(int init_color, int end_color, int steps)
 	delta.green = (color2.green - color1.green) / (float)steps;
 	delta.blue = (color2.blue - color1.blue) / (float)steps;
 	delta.alpha = (color2.alpha - color1.alpha) / (float)steps;
-	i = -1;
-	while (++i <= steps)
-		gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
-					| ((color1.green + (int)(delta.green * i)) << 16) \
-					| ((color1.blue + (int)(delta.blue * i)) << 8) \
-					| (color1.alpha + (int)(delta.alpha * 1));
-	return (gradient);
+	return (delta);
 }
 
+int	*color_gradient(int init_color, int end_color, int steps, t_map *map)
+{
+	int				*gradient;
+	t_color			color1;
+	t_delta_color	delta;
+	int				i;
+
+	gradient = (int *)malloc(sizeof(int) * (steps + 1));
+	if (gradient == NULL)
+		return (NULL);
+	if (map->flat_color)
+		ft_memset(gradient, end_color, steps + 1);
+	else
+	{
+		color1.red = init_color >> 24;
+		color1.green = (init_color >> 16) & 0xFF;
+		color1.blue = (init_color >> 8) & 0xFF;
+		color1.alpha = init_color & 0xFF;
+		delta = get_delta(init_color, end_color, steps);
+		i = -1;
+		while (++i <= steps)
+			gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
+						| ((color1.green + (int)(delta.green * i)) << 16) \
+						| ((color1.blue + (int)(delta.blue * i)) << 8) \
+						| (color1.alpha + (int)(delta.alpha * 1));
+	}
+	return (gradient);
+}
