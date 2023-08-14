@@ -59,6 +59,8 @@ typedef struct s_map
 	int			y_max;
 	int			x_min;
 	int			y_min;
+	int			h_min;
+	int			h_max;
 	int			width;
 	int			height;
 	int			flat_color;

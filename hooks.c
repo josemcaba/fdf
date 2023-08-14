@@ -58,9 +58,9 @@ void	pressed_keys(void *param)
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 		map->z_scale -= 0.001;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_F))
-		map->flat_color = TRUE;
+		map->flat_color = 1;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_P))
-		map->flat_color = FALSE;
+		map->flat_color = 0;
 	pressed_keys_2(map);
 }
 

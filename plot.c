@@ -26,13 +26,13 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 	uint32_t	y_prev;
 	int			i;
 
-	y_prev = p1.y + 0.5;
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
 	i = -1;
 	mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
-	while (p1.x - p2.x)
+	while (p1.x != p2.x)
 	{
+		y_prev = p1.y;
 		if (p1.x < p2.x)
 			p1.x++;
 		else

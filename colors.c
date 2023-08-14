@@ -12,9 +12,6 @@
 
 #include "fdf.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
 int	steps_counter(t_point p1, t_point p2)
 {
 	int			steps;
@@ -22,12 +19,12 @@ int	steps_counter(t_point p1, t_point p2)
 	double		n;
 	uint32_t	y_prev;
 
-	y_prev = p1.y + 0.5;
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
 	steps = 0;
-	while (p1.x - p2.x)
+	while (p1.x != p2.x)
 	{
+		y_prev = p1.y;
 		if (p1.x < p2.x)
 			p1.x++;
 		else

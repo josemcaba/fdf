@@ -44,7 +44,6 @@ void	fill_row(t_map *map, int y, char *nbrs[])
 	while (nbrs[x])
 	{
 		map->coord[x][y] = ft_atoi(nbrs[x]);
-		map->point[x][y].h = map->coord[x][y];
 		map->point[x][y].color = set_color(map->coord[x][y]);
 		free(nbrs[x]);
 		x++;
