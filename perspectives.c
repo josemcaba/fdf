@@ -17,7 +17,7 @@ void	set_isometric(t_map *map)
 	map->alpha = M_PI / 6;
 	map->beta = M_PI / 6;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "PERSPECTIVE ISOMETRIC", 5, 5);
+	map->menu = mlx_put_string(map->mlx, "ISOMETRIC PERSPECTIVE", 5, 5);
 }
 
 void	set_military(t_map *map)
@@ -25,7 +25,7 @@ void	set_military(t_map *map)
 	map->alpha = M_PI / 6;
 	map->beta = M_PI / 3;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "PERSPECTIVE MILITARY", 5, 5);
+	map->menu = mlx_put_string(map->mlx, "MILITARY PERSPECTIVE", 5, 5);
 }
 
 void	set_cavalier(t_map *map)
@@ -33,7 +33,7 @@ void	set_cavalier(t_map *map)
 	map->alpha = 0;
 	map->beta = M_PI / 4;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "PERSPECTIVE CAVALIER", 5, 5);
+	map->menu = mlx_put_string(map->mlx, "CAVALIER PERSPECTIVE", 5, 5);
 }
 
 void	set_initial_scale(t_map *map)

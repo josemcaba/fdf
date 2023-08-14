@@ -15,6 +15,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int	steps_counter(t_point p1, t_point p2, t_map *map)
+{
+	int			steps;
+	double		m;
+	double		n;
+	uint32_t	y_prev;
+
+	y_prev = p1.y + 0.5;
+	m = (p2.y - p1.y) / (p2.x - p1.x);
+	n = p1.y - (m * p1.x);
+	steps = 0;
+	while (p1.x - p2.x)
+	{
+		if (p1.x < p2.x)
+			p1.x++;
+		else
+			p1.x--;
+		p1.y = (m * p1.x + n) + 0.5;
+		steps++;
+		while (++y_prev < p1.y)
+			steps++;
+		while (--y_prev > p1.y)
+			steps++;
+	}
+	return (steps);
+}
+
 int	*color_gradient(int init_color, int end_color, int steps)
 {
 	int				*gradient;
@@ -46,3 +73,4 @@ int	*color_gradient(int init_color, int end_color, int steps)
 					| (color1.alpha + (int)(delta.alpha * 1));
 	return (gradient);
 }
+

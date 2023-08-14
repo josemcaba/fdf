@@ -88,5 +88,6 @@ void	rotate_points(t_map *map, int direction);
 void	reset_limits(t_map *map);
 void	update_limits(t_map *map, t_point point);
 int		*color_gradient(int init_color, int end_color, int steps);
+int		steps_counter(t_point p1, t_point p2, t_map *map);
 
 #endif

@@ -26,7 +26,7 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 	uint32_t	y_prev;
 	int			i;
 
-	y_prev = p1.y;
+	y_prev = p1.y + 0.5;
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
 	i = -1;
@@ -73,19 +73,22 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	int	steps;
-	// map->color = p1.color;
-	// if (p2.h > p1.h)
-	// 	map->color = p2.color;
-	steps = sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+	int	i;
+	
+	if (p1.x == p2.x)
+		steps = fabs(p1.y - p2.y);
+	else
+		steps = steps_counter(p1, p2, map);
 	map->grad = color_gradient(p1.color, p2.color, steps);
+	i = -1;
 	if (p1.x == p2.x)
 	{
 		if (p1.y < p2.y)
 			while (++p1.y < p2.y)
-				mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+				mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
 		else
 			while (--p1.y > p2.y)
-				mlx_put_pixel(map->img, p1.x, p1.y, map->color);
+				mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
 	}
 	else
 		plot_line(p1, p2, map);
