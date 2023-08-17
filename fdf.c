@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/17 11:50:25 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:45:01 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ int	main(int argc, char **argv)
 	set_isometric(&map);
 	mlx_loop_hook(map.mlx, render_img, &map);
 	mlx_loop_hook(map.mlx, pressed_keys, &map);
+	mlx_scroll_hook(map.mlx, mouse_wheel, &map);
+	mlx_mouse_hook(map.mlx, mouse_click, &map);
+	mlx_cursor_hook(map.mlx, mouse_move, &map);
 	mlx_loop(map.mlx);
 	mlx_terminate(map.mlx);
 	free_map(&map, map.columns);

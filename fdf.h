@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/17 11:48:56 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:41:56 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_map
 	int			mono_color;
 	int			*grad;
 	int			triangles;
+	int			xmouse;
+	int			ymouse;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	mlx_image_t	*menu;
@@ -91,5 +93,8 @@ void	reset_limits(t_map *map);
 void	update_limits(t_map *map, t_point point);
 int		*color_gradient(int init_color, int end_color, int steps, t_map *map);
 int		steps_counter(t_point p1, t_point p2);
+void	mouse_wheel(double xdelta, double ydelta, void *param);
+void	mouse_move(double xpos, double ypos, void *param);
+void	mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 
 #endif
