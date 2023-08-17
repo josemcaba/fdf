@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 12:22:50 by jocaball          #+#    #+#             */
-/*   Updated: 2023/07/10 23:28:52 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:02:55 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_wc(char const *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != c)
+		if ((str[i] != c) && ft_isalnum(str[i]))
 		{
 			count++;
 			while (str[i] && str[i] != c)

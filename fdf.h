@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 21:04:07 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:48:56 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_map
 	int			h_max;
 	int			width;
 	int			height;
-	int			flat_color;
+	int			mono_color;
 	int			*grad;
 	int			triangles;
 	mlx_t		*mlx;

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 21:33:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:21:31 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,43 +38,19 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 		else
 			p1.x--;
 		p1.y = (m * p1.x + n) + 0.5;
-		mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
 		while (++y_prev < p1.y)
 			mlx_put_pixel(map->img, p1.x, y_prev, map->grad[++i]);
 		while (--y_prev > p1.y)
 			mlx_put_pixel(map->img, p1.x, y_prev, map->grad[++i]);
+		mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
 	}
 }
-// void	plot_line(t_point p1, t_point p2, t_map *map)
-// {
-// 	double		m;
-// 	double		n;
-// 	uint32_t	y_prev;
-
-// 	y_prev = p1.y;
-// 	m = (p2.y - p1.y) / (p2.x - p1.x);
-// 	n = p1.y - (m * p1.x);
-// 	mlx_put_pixel(map->img, p1.x, p1.y, map->color);
-// 	while (p1.x - p2.x)
-// 	{
-// 		if (p1.x < p2.x)
-// 			p1.x++;
-// 		else
-// 			p1.x--;
-// 		p1.y = (m * p1.x + n) + 0.5;
-// 		mlx_put_pixel(map->img, p1.x, p1.y, map->color);
-// 		while (++y_prev < p1.y)
-// 			mlx_put_pixel(map->img, p1.x, y_prev, map->color);
-// 		while (--y_prev > p1.y)
-// 			mlx_put_pixel(map->img, p1.x, y_prev, map->color);
-// 	}
-// }
 
 void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	int	steps;
 	int	i;
-	
+
 	if (p1.x == p2.x)
 		steps = fabs(p1.y - p2.y);
 	else

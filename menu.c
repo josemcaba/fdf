@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 13:35:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/07 17:07:59 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:05:39 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,7 @@ void	set_menu(t_map *map)
 	map->menu = mlx_put_string(map->mlx, "[L] Rotate left", 5, 380);
 	map->menu = mlx_put_string(map->mlx, "[R] Rotate right", 5, 400);
 	map->menu = mlx_put_string(map->mlx, "[arrows] Move", 5, 440);
+	map->menu = mlx_put_string(map->mlx, "[C] Color", 5, 480);
+	map->menu = mlx_put_string(map->mlx, "[M] Mono\n", 5, 500);
+	map->menu = mlx_put_string(map->mlx, "", 0, 0);
 }

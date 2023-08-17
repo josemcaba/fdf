@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:26:53 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 21:45:34 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:06:37 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	measure_map(int fd, t_map *map)
 int	set_color(int height)
 {
 	if (height == 0)
-		return (0xff0000aa);
+		return (0xff00ffaa);
 	return (0x00ff00aa);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 20:52:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 20:31:27 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:21:04 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	steps_counter(t_point p1, t_point p2)
 	return (steps);
 }
 
-t_delta_color get_delta(int init_color, int end_color, int steps)
+t_delta_color	get_delta(int init_color, int end_color, int steps)
 {
 	t_color			color1;
 	t_color			color2;
@@ -70,17 +70,17 @@ int	*color_gradient(int init_color, int end_color, int steps, t_map *map)
 	gradient = (int *)malloc(sizeof(int) * (steps + 1));
 	if (gradient == NULL)
 		return (NULL);
-	if (map->flat_color)
-		ft_memset(gradient, end_color, steps + 1);
-	else
+	color1.red = init_color >> 24;
+	color1.green = (init_color >> 16) & 0xFF;
+	color1.blue = (init_color >> 8) & 0xFF;
+	color1.alpha = init_color & 0xFF;
+	delta = get_delta(init_color, end_color, steps);
+	i = -1;
+	while (++i <= steps)
 	{
-		color1.red = init_color >> 24;
-		color1.green = (init_color >> 16) & 0xFF;
-		color1.blue = (init_color >> 8) & 0xFF;
-		color1.alpha = init_color & 0xFF;
-		delta = get_delta(init_color, end_color, steps);
-		i = -1;
-		while (++i <= steps)
+		if (map->mono_color)
+			gradient[i] = fmax(init_color, end_color);
+		else
 			gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
 						| ((color1.green + (int)(delta.green * i)) << 16) \
 						| ((color1.blue + (int)(delta.blue * i)) << 8) \
