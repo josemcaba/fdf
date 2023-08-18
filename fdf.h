@@ -6,14 +6,14 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 13:53:06 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:23:17 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIDTH 1000
-# define HEIGHT 700
+# define WIDTH 1500
+# define HEIGHT 1000
 # define LEFT_MARGIN 250
 # define UPPER_MARGIN 100
 # include "./libft/libft.h"
@@ -87,9 +87,7 @@ void		set_isometric(t_map *map);
 void		set_military(t_map *map);
 void		set_cavalier(t_map *map);
 t_point		translate_coord_to_point(t_map *map, int i, int j);
-void		set_menu(t_map *map);
 void		rotate(t_map *map, int direction);
-
 void		reset_limits(t_map *map);
 void		update_limits(t_map *map, t_point point);
 int			steps_counter(t_point p1, t_point p2);

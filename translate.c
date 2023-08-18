@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 11:41:55 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:16:00 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	reset_limits(t_map *map)
 	map->h_min = point.h;
 }
 
-void	zero_adjust(t_map *map)
+static void	zero_adjust(t_map *map)
 {
 	int		i;
 	int		j;

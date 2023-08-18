@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/17 14:21:31 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:17:42 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // @param p1 Primer extremo del segmento
 // @param p2 Segundo extremo del segmento
 // @param *map Estrutura de datos del mapa
-void	plot_line(t_point p1, t_point p2, t_map *map)
+static void	plot_line(t_point p1, t_point p2, t_map *map)
 {
 	double		m;
 	double		n;
@@ -46,7 +46,7 @@ void	plot_line(t_point p1, t_point p2, t_map *map)
 	}
 }
 
-void	plot_segment(t_point p1, t_point p2, t_map *map)
+static void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	int	steps;
 	int	i;
@@ -71,7 +71,7 @@ void	plot_segment(t_point p1, t_point p2, t_map *map)
 	free(map->grad);
 }
 
-void	plot_triangles(t_map *map)
+static void	plot_triangles(t_map *map)
 {
 	int		i;
 	int		j;

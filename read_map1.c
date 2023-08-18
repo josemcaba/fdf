@@ -6,13 +6,13 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/13 19:11:42 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:10:44 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	fill_map(int fd, t_map *map)
+static int	fill_map(int fd, t_map *map)
 {
 	char	*line;
 	char	**nbrs;
@@ -40,7 +40,7 @@ int	fill_map(int fd, t_map *map)
 	return (EXIT_SUCCESS);
 }
 
-int	alloc_points(t_map *map)
+static int	alloc_points(t_map *map)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ int	alloc_points(t_map *map)
 	return (EXIT_SUCCESS);
 }
 
-int	alloc_map(int fd, t_map *map)
+static int	alloc_map(int fd, t_map *map)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ int	alloc_map(int fd, t_map *map)
 	return (EXIT_SUCCESS);
 }
 
-int	open_map_file(char *fname)
+static int	open_map_file(char *fname)
 {
 	int		fd;
 

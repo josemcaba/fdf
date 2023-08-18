@@ -6,13 +6,13 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 10:18:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:24:33 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	pressed_keys_2(t_map	*map)
+static void	pressed_keys_2(t_map	*map)
 {
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
 		map->img->instances[0].y -= 3;
