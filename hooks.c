@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/17 20:34:30 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 10:18:32 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	pressed_keys(void *param)
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
 		map->scale *= 1.01;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_U))
-		map->z_scale += 0.001;
+		map->z_scale += 0.002;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-		map->z_scale -= 0.001;
+		map->z_scale -= 0.002;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_P))
-		map->mono_color = 0;
+		map->constant_color = 0;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
-		map->mono_color = 1;
+		map->constant_color = 1;
 	pressed_keys_2(map);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/17 19:45:01 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:46:26 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int	init_map(char *fname, t_map *map)
 	map->height = 0;
 	map->scale = 0;
 	map->z_scale = 0.08;
-	map->mono_color = 1;
+	map->constant_color = 1;
+	map->base_color = 0xe3f50aff;
 	map->triangles = 0;
 	map->img = NULL;
 	map->menu = NULL;
