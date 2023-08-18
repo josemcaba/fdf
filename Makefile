@@ -6,13 +6,13 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/18 20:17:56 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/18 21:55:02 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PNAME = fdf
 SRC  = 	fdf.c read_map1.c read_map2.c translate.c \
-		perspectives.c plot.c hooks.c colors.c mouse.c
+		perspectives.c plot.c hooks.c
 INC  = fdf.h
 
 PNAME_B = fdf_bonus

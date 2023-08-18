@@ -6,15 +6,15 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 16:23:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 22:00:45 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIDTH 1500
-# define HEIGHT 1000
-# define LEFT_MARGIN 250
+# define WIDTH 1400
+# define HEIGHT 900
+# define LEFT_MARGIN 100
 # define UPPER_MARGIN 100
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
@@ -63,15 +63,9 @@ typedef struct s_map
 	int			h_max;
 	int			width;
 	int			height;
-	uint32_t	constant_color;
-	uint32_t	base_color;
-	uint32_t	*grad;
-	int			triangles;
-	int			xmouse;
-	int			ymouse;
+	uint32_t	color;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*menu;
 }	t_map;
 
 int			read_map_file(char *fname, t_map *map);
@@ -87,14 +81,11 @@ void		set_isometric(t_map *map);
 void		set_military(t_map *map);
 void		set_cavalier(t_map *map);
 t_point		translate_coord_to_point(t_map *map, int i, int j);
-void		rotate(t_map *map, int direction);
 void		reset_limits(t_map *map);
 void		update_limits(t_map *map, t_point point);
 int			steps_counter(t_point p1, t_point p2);
-void		mouse_wheel(double xdelta, double ydelta, void *param);
-void		mouse_move(double xpos, double ypos, void *param);
-void		mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);
-void		set_triadic_color(t_point *point, t_map *map);
+
+
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 							int steps, t_map *map);
 #endif
