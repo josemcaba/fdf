@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 16:13:00 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:51:07 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ static int	init_map(char *fname, t_map *map)
 	map->triangles = 0;
 	map->img = NULL;
 	map->menu = NULL;
+	mlx_image_to_window(map->mlx, mlx_texture_to_image(map->mlx, mlx_load_png("COFRE.png")), 0, 0);
+	set_menu(map);
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	set_menu(map);
 	set_initial_scale(map);
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
@@ -91,7 +92,8 @@ void	free_map(t_map *map, int n_points)
 		n_points--;
 		free(map->point[n_points]);
 	}
-	free(map->point);
+	if (map->point)
+		free(map->point);
 }
 
 int	main(int argc, char **argv)
