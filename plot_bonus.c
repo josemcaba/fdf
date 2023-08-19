@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 13:29:22 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 14:13:09 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	plot_segment(t_point p1, t_point p2, t_map *map)
 		steps = fabs(p1.y - p2.y);
 	else
 		steps = steps_counter(p1, p2);
+	if (steps == 0)
+		return ;
 	map->grad = color_gradient(p1.color, p2.color, steps, map);
 	if (map->grad == NULL)
 		return ;

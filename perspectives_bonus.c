@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 13:14:44 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 17:02:04 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	set_isometric(t_map *map)
 	map->alpha = M_PI / 6;
 	map->beta = M_PI / 6;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "ISOMETRIC PERSPECTIVE", MENU_LM, 5);
+	map->menu = mlx_put_string(map->mlx, "ISOMETRIC PERSPECTIVE", \
+								LEFT_MARGIN, 5);
 }
 
 void	set_military(t_map *map)
@@ -25,23 +26,17 @@ void	set_military(t_map *map)
 	map->alpha = M_PI / 6;
 	map->beta = M_PI / 3;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "MILITARY PERSPECTIVE", MENU_LM, 5);
+	map->menu = mlx_put_string(map->mlx, "MILITARY PERSPECTIVE", \
+								LEFT_MARGIN, 5);
 }
-
-// void	set_cavalier(t_map *map)
-// {
-// 	map->alpha = 0;
-// 	map->beta = M_PI / 4;
-// 	mlx_delete_image(map->mlx, map->menu);
-// 	map->menu = mlx_put_string(map->mlx, "CAVALIER PERSPECTIVE", MENU_LM, 5);
-// }
 
 void	set_cavalier(t_map *map)
 {
 	map->alpha = 0;
-	map->beta = M_PI / 2;
+	map->beta = M_PI / 4;
 	mlx_delete_image(map->mlx, map->menu);
-	map->menu = mlx_put_string(map->mlx, "CAVALIER PERSPECTIVE", MENU_LM, 5);
+	map->menu = mlx_put_string(map->mlx, "CAVALIER PERSPECTIVE", \
+								LEFT_MARGIN, 5);
 }
 
 void	set_initial_scale(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 20:52:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 10:30:55 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 13:57:32 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	steps_counter(t_point p1, t_point p2)
 	return (steps);
 }
 
-static t_delta_color	get_delta(uint32_t init_color, 
+static t_delta_color	get_delta(uint32_t init_color,
 									uint32_t end_color, \
 									int steps)
 {

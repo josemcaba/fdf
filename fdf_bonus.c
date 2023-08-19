@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 12:45:43 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 17:03:16 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 static void	set_menu(t_map *map)
 {
-	map->menu = mlx_put_string(map->mlx, ">>> PERSPECTIVE <<<", MENU_LM, 60);
-	map->menu = mlx_put_string(map->mlx, "[1] Isometric", MENU_LM, 80);
-	map->menu = mlx_put_string(map->mlx, "[2] Military", MENU_LM, 100);
-	map->menu = mlx_put_string(map->mlx, "[3] Cavalier", MENU_LM, 120);
-	map->menu = mlx_put_string(map->mlx, ">>> GRID <<<", MENU_LM, 160);
-	map->menu = mlx_put_string(map->mlx, "[S] Squared", MENU_LM, 180);
-	map->menu = mlx_put_string(map->mlx, "[T] Triangulated", MENU_LM, 200);
-	map->menu = mlx_put_string(map->mlx, ">>> HEIGHT <<<", MENU_LM, 240);
-	map->menu = mlx_put_string(map->mlx, "[U] Up", MENU_LM, 260);
-	map->menu = mlx_put_string(map->mlx, "[D] Down", MENU_LM, 280);
-	map->menu = mlx_put_string(map->mlx, ">>> ZOOM <<<", MENU_LM, 320);
-	map->menu = mlx_put_string(map->mlx, "[+] In", MENU_LM, 340);
-	map->menu = mlx_put_string(map->mlx, "[-] Out", MENU_LM, 360);
-	map->menu = mlx_put_string(map->mlx, "[Mouse wheel]", MENU_LM, 380);
-	map->menu = mlx_put_string(map->mlx, ">>> MOVE<<<", MENU_LM, 420);
-	map->menu = mlx_put_string(map->mlx, "[Arrows]", MENU_LM, 440);
-	map->menu = mlx_put_string(map->mlx, "[Mouse left]", MENU_LM, 460);
-	map->menu = mlx_put_string(map->mlx, ">>> ROTATE <<<", MENU_LM, 500);
-	map->menu = mlx_put_string(map->mlx, "[L] Left", MENU_LM, 520);
-	map->menu = mlx_put_string(map->mlx, "[R] Right", MENU_LM, 540);
-	map->menu = mlx_put_string(map->mlx, "[Mouse right]", MENU_LM, 560);
-	map->menu = mlx_put_string(map->mlx, ">>> COLOR <<<", MENU_LM, 600);
-	map->menu = mlx_put_string(map->mlx, "[C] Constant", MENU_LM, 620);
-	map->menu = mlx_put_string(map->mlx, "[P] Progressive", MENU_LM, 640);
+	map->menu = mlx_put_string(map->mlx, ">>> PERSPECTIVE <<<", MENU_LM, 50);
+	map->menu = mlx_put_string(map->mlx, "[1] Isometric", MENU_LM, 70);
+	map->menu = mlx_put_string(map->mlx, "[2] Military", MENU_LM, 90);
+	map->menu = mlx_put_string(map->mlx, "[3] Cavalier", MENU_LM, 110);
+	map->menu = mlx_put_string(map->mlx, ">>> GRID <<<", MENU_LM, 150);
+	map->menu = mlx_put_string(map->mlx, "[S] Squared", MENU_LM, 170);
+	map->menu = mlx_put_string(map->mlx, "[T] Triangulated", MENU_LM, 190);
+	map->menu = mlx_put_string(map->mlx, ">>> HEIGHT <<<", MENU_LM, 230);
+	map->menu = mlx_put_string(map->mlx, "[U] Up", MENU_LM, 250);
+	map->menu = mlx_put_string(map->mlx, "[D] Down", MENU_LM, 270);
+	map->menu = mlx_put_string(map->mlx, ">>> ZOOM <<<", MENU_LM, 310);
+	map->menu = mlx_put_string(map->mlx, "[+] In", MENU_LM, 330);
+	map->menu = mlx_put_string(map->mlx, "[-] Out", MENU_LM, 350);
+	map->menu = mlx_put_string(map->mlx, "[Mouse wheel]", MENU_LM, 370);
+	map->menu = mlx_put_string(map->mlx, ">>> MOVE<<<", MENU_LM, 410);
+	map->menu = mlx_put_string(map->mlx, "[Arrows]", MENU_LM, 430);
+	map->menu = mlx_put_string(map->mlx, "[Mouse left]", MENU_LM, 450);
+	map->menu = mlx_put_string(map->mlx, ">>> ROTATE <<<", MENU_LM, 490);
+	map->menu = mlx_put_string(map->mlx, "[L] Left", MENU_LM, 510);
+	map->menu = mlx_put_string(map->mlx, "[R] Right", MENU_LM, 530);
+	map->menu = mlx_put_string(map->mlx, "[Mouse right]", MENU_LM, 550);
+	map->menu = mlx_put_string(map->mlx, ">>> COLOR <<<", MENU_LM, 590);
+	map->menu = mlx_put_string(map->mlx, "[C] Constant", MENU_LM, 610);
+	map->menu = mlx_put_string(map->mlx, "[P] Progressive", MENU_LM, 630);
 	map->menu = mlx_put_string(map->mlx, "", 0, 0);
 }
 
@@ -66,7 +66,10 @@ static int	init_map(char *fname, t_map *map)
 	map->triangles = 0;
 	map->img = NULL;
 	map->menu = NULL;
-	mlx_image_to_window(map->mlx, mlx_texture_to_image(map->mlx, mlx_load_png("COFRE.png")), 0, 0);
+	mlx_image_to_window(map->mlx, \
+						mlx_texture_to_image(map->mlx, \
+						mlx_load_png("cofre.png")), 0, 0);
+	map->menu = mlx_put_string(map->mlx, "Gomu Gomu Achievement", 260, 640);
 	set_menu(map);
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

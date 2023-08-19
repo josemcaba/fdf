@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/19 12:25:25 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/19 17:08:27 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC  = 	fdf.c read_map1.c read_map2.c translate.c \
 INC  = fdf.h
 
 PNAME_B = fdf_bonus
-SRC_B  = fdf_bonus.c read_map1_bonus.c read_map2_bonus.c translate_bonus.c \
+SRC_B  = fdf_bonus.c read_map1.c read_map2.c translate_bonus.c \
 		perspectives_bonus.c plot_bonus.c hooks_bonus.c colors_bonus.c mouse_bonus.c
 INC_B  = fdf_bonus.h
 
