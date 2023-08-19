@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 17:03:16 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 20:35:17 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ static int	init_map(char *fname, t_map *map)
 	map->triangles = 0;
 	map->img = NULL;
 	map->menu = NULL;
-	mlx_image_to_window(map->mlx, \
-						mlx_texture_to_image(map->mlx, \
-						mlx_load_png("cofre.png")), 0, 0);
-	map->menu = mlx_put_string(map->mlx, "Gomu Gomu Achievement", 260, 640);
+	set_achievement(map);
 	set_menu(map);
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

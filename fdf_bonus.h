@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 12:51:02 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 20:45:47 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,6 @@ void		mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 void		set_triadic_color(t_point *point, t_map *map);
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 							int steps, t_map *map);
+void		set_achievement(t_map *map);
+
 #endif
