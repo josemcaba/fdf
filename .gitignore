@@ -11,3 +11,4 @@ Makefile copy
 42.xls
 fdf_
 MLX42/libmlx42.a
+test.sh

@@ -6,13 +6,13 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/18 21:55:02 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/19 12:25:25 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PNAME = fdf
 SRC  = 	fdf.c read_map1.c read_map2.c translate.c \
-		perspectives.c plot.c hooks.c
+		perspectives.c plot.c hooks.c colors.c
 INC  = fdf.h
 
 PNAME_B = fdf_bonus
@@ -32,7 +32,7 @@ GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
 
-all : $(PNAME) 
+all : makelibs $(PNAME) 
 
 $(NAME): 
 	$(LIBFT) $(MLX42) $(PNAME)
@@ -47,27 +47,25 @@ $(PNAME): $(LIBFT) $(MLX42) $(SRC) $(INC)
 	@$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME)
 	@echo "$(GREEN)\n-------> Program $(YELLOW)$(PNAME)$(GREEN) has been created\n$(DEF_COLOR)"
 
-bonus: $(PNAME_B)
+bonus: makelibs $(PNAME_B)
 
 $(NAME_B): 
-	$(LIBFT_B) $(MLX42_B) $(PNAME_B)
-
-$(LIBFT_B): 
-	$(MAKE_LIBFT)
-
-$(MLX42_B): 
-	$(MAKE_MLX42)
+	$(LIBFT) $(MLX42) $(PNAME_B)
 
 $(PNAME_B): $(LIBFT) $(MLX42) $(SRC_B) $(INC_B)
 	@$(CC) $(CFLAGS) $(SRC_B) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME_B)
 	@echo "$(GREEN)\n-------> Program $(YELLOW)$(PNAME_B)$(GREEN) has been created\n$(DEF_COLOR)"
 
+makelibs :
+	$(MAKE_LIBFT)
+	$(MAKE_MLX42)
+	
 clean :
 	$(MAKE_LIBFT) clean 
-	$(MAKE_MLX42) fclean
+	$(MAKE_MLX42) clean
 
 fclean : clean
-	rm -f $(PNAME) $(PNAME_B) 
+	@rm -f $(PNAME) $(PNAME_B) 
 	$(MAKE_LIBFT) fclean
 	$(MAKE_MLX42) fclean
 

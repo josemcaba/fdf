@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 20:29:56 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:41:51 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,4 @@ void	pressed_keys(void *param)
 	map = param;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(map->mlx);
-}
-
-void	render_img(void *param)
-{
-	t_map	*map;
-
-	map = param;
-	fill_points(map);
-	mlx_resize_image(map->img, map->width, map->height);
-	plot_grid(map);
 }

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 21:47:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 12:23:57 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	init_map(char *fname, t_map *map)
 	map->height = 0;
 	map->scale = 0;
 	map->z_scale = 0.08;
-	map->color = 0xe3f50aff;
+	map->base_color = 0xe3f50aff;
 	map->img = NULL;
 	if (read_map_file(fname, map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
@@ -75,8 +75,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (init_map(argv[1], &map) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
-	set_isometric(&map);
-	mlx_loop_hook(map.mlx, render_img, &map);
+	fill_points(&map);
+	plot_grid(&map);
 	mlx_loop_hook(map.mlx, pressed_keys, &map);
 	mlx_loop(map.mlx);
 	mlx_terminate(map.mlx);

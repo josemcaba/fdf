@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perspectives.c                                     :+:      :+:    :+:   */
+/*   perspectives_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 15:54:05 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:19:59 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	set_isometric(t_map *map)
 {

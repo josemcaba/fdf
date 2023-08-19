@@ -6,17 +6,11 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 21:45:52 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:41:26 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	set_isometric(t_map *map)
-{
-	map->alpha = M_PI / 6;
-	map->beta = M_PI / 6;
-}
 
 void	set_initial_scale(t_map *map)
 {

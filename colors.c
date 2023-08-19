@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_bonus.c                                     :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 20:52:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 10:14:48 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:30:55 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
 int	steps_counter(t_point p1, t_point p2)
 {
@@ -39,7 +39,7 @@ int	steps_counter(t_point p1, t_point p2)
 	return (steps);
 }
 
-static t_delta_color	get_delta(	uint32_t init_color, \
+static t_delta_color	get_delta(uint32_t init_color, 
 									uint32_t end_color, \
 									int steps)
 {
@@ -63,7 +63,7 @@ static t_delta_color	get_delta(	uint32_t init_color, \
 }
 
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
-							int steps, t_map *map)
+							int steps)
 {
 	uint32_t		*gradient;
 	t_color			color1;
@@ -81,13 +81,10 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 	i = -1;
 	while (++i <= steps)
 	{
-		if (map->constant_color)
-			gradient[i] = fmax(init_color, end_color);
-		else
-			gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
-						| ((color1.green + (int)(delta.green * i)) << 16) \
-						| ((color1.blue + (int)(delta.blue * i)) << 8) \
-						| (color1.alpha + (int)(delta.alpha * 1));
+		gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
+					| ((color1.green + (int)(delta.green * i)) << 16) \
+					| ((color1.blue + (int)(delta.blue * i)) << 8) \
+					| (color1.alpha + (int)(delta.alpha * 1));
 	}
 	return (gradient);
 }

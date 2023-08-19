@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 20:41:09 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:16:00 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	zero_adjust(t_map *map)
 			map->point[i][j].x -= map->x_min;
 			map->point[i][j].y -= map->y_min;
 			map->point[i][j].h -= map->h_min;
+			set_triadic_color(&map->point[i][j], map);
 			j++;
 		}
 	}
