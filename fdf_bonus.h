@@ -6,16 +6,17 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 20:30:50 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 12:51:02 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_BONUS_H
 # define FDF_H
-# define WIDTH 1500
-# define HEIGHT 1000
-# define LEFT_MARGIN 250
-# define UPPER_MARGIN 100
+# define WIDTH 1900
+# define HEIGHT 700
+# define LEFT_MARGIN 1000
+# define UPPER_MARGIN 50
+# define MENU_LM 750
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>

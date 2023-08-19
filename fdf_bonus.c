@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 12:25:54 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/19 12:45:43 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 static void	set_menu(t_map *map)
 {
-	map->menu = mlx_put_string(map->mlx, ">>> PERSPECTIVE <<<", 5, 60);
-	map->menu = mlx_put_string(map->mlx, "[1] Isometric", 5, 80);
-	map->menu = mlx_put_string(map->mlx, "[2] Military", 5, 100);
-	map->menu = mlx_put_string(map->mlx, "[3] Cavalier", 5, 120);
-	map->menu = mlx_put_string(map->mlx, ">>> GRID <<<", 5, 160);
-	map->menu = mlx_put_string(map->mlx, "[S] Squared", 5, 180);
-	map->menu = mlx_put_string(map->mlx, "[T] Triangulated", 5, 200);
-	map->menu = mlx_put_string(map->mlx, ">>> HEIGHT <<<", 5, 240);
-	map->menu = mlx_put_string(map->mlx, "[U] Up", 5, 260);
-	map->menu = mlx_put_string(map->mlx, "[D] Down", 5, 280);
-	map->menu = mlx_put_string(map->mlx, ">>> ZOOM <<<", 5, 320);
-	map->menu = mlx_put_string(map->mlx, "[+] In", 5, 340);
-	map->menu = mlx_put_string(map->mlx, "[-] Out", 5, 360);
-	map->menu = mlx_put_string(map->mlx, "[Mouse wheel]", 5, 380);
-	map->menu = mlx_put_string(map->mlx, ">>> MOVE<<<", 5, 420);
-	map->menu = mlx_put_string(map->mlx, "[Arrows]", 5, 440);
-	map->menu = mlx_put_string(map->mlx, "[Mouse left]", 5, 460);
-	map->menu = mlx_put_string(map->mlx, ">>> ROTATE <<<", 5, 500);
-	map->menu = mlx_put_string(map->mlx, "[L] Left", 5, 520);
-	map->menu = mlx_put_string(map->mlx, "[R] Right", 5, 540);
-	map->menu = mlx_put_string(map->mlx, "[Mouse right]", 5, 560);
-	map->menu = mlx_put_string(map->mlx, ">>> COLOR <<<", 5, 600);
-	map->menu = mlx_put_string(map->mlx, "[C] Constant", 5, 620);
-	map->menu = mlx_put_string(map->mlx, "[P] Progressive", 5, 640);
+	map->menu = mlx_put_string(map->mlx, ">>> PERSPECTIVE <<<", MENU_LM, 60);
+	map->menu = mlx_put_string(map->mlx, "[1] Isometric", MENU_LM, 80);
+	map->menu = mlx_put_string(map->mlx, "[2] Military", MENU_LM, 100);
+	map->menu = mlx_put_string(map->mlx, "[3] Cavalier", MENU_LM, 120);
+	map->menu = mlx_put_string(map->mlx, ">>> GRID <<<", MENU_LM, 160);
+	map->menu = mlx_put_string(map->mlx, "[S] Squared", MENU_LM, 180);
+	map->menu = mlx_put_string(map->mlx, "[T] Triangulated", MENU_LM, 200);
+	map->menu = mlx_put_string(map->mlx, ">>> HEIGHT <<<", MENU_LM, 240);
+	map->menu = mlx_put_string(map->mlx, "[U] Up", MENU_LM, 260);
+	map->menu = mlx_put_string(map->mlx, "[D] Down", MENU_LM, 280);
+	map->menu = mlx_put_string(map->mlx, ">>> ZOOM <<<", MENU_LM, 320);
+	map->menu = mlx_put_string(map->mlx, "[+] In", MENU_LM, 340);
+	map->menu = mlx_put_string(map->mlx, "[-] Out", MENU_LM, 360);
+	map->menu = mlx_put_string(map->mlx, "[Mouse wheel]", MENU_LM, 380);
+	map->menu = mlx_put_string(map->mlx, ">>> MOVE<<<", MENU_LM, 420);
+	map->menu = mlx_put_string(map->mlx, "[Arrows]", MENU_LM, 440);
+	map->menu = mlx_put_string(map->mlx, "[Mouse left]", MENU_LM, 460);
+	map->menu = mlx_put_string(map->mlx, ">>> ROTATE <<<", MENU_LM, 500);
+	map->menu = mlx_put_string(map->mlx, "[L] Left", MENU_LM, 520);
+	map->menu = mlx_put_string(map->mlx, "[R] Right", MENU_LM, 540);
+	map->menu = mlx_put_string(map->mlx, "[Mouse right]", MENU_LM, 560);
+	map->menu = mlx_put_string(map->mlx, ">>> COLOR <<<", MENU_LM, 600);
+	map->menu = mlx_put_string(map->mlx, "[C] Constant", MENU_LM, 620);
+	map->menu = mlx_put_string(map->mlx, "[P] Progressive", MENU_LM, 640);
 	map->menu = mlx_put_string(map->mlx, "", 0, 0);
 }
 
