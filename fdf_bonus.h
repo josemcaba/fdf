@@ -72,7 +72,7 @@ typedef struct s_map
 	int			ymouse;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*menu;
+	mlx_image_t	*str;
 }	t_map;
 
 int			read_map_file(char *fname, t_map *map);

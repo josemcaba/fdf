@@ -12,16 +12,11 @@
 
 #include "fdf.h"
 
-static int	open_new_window(t_map *map)
+static void	open_window(t_map *map, char *str)
 {
-	map->mlx = mlx_init(WIDTH, HEIGHT, \
-			"FdF by Jose M. Caballero", true);
+	map->mlx = mlx_init(WIDTH, HEIGHT, str, true);
 	if (!map->mlx)
-	{
-		ft_printf("Can not open a new window.\n");
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+		ft_error("ERROR: mlx_init at fdf.c (line 17)");
 }
 
 static int	init_map(char *fname, t_map *map)
@@ -67,12 +62,8 @@ int	main(int argc, char **argv)
 	t_map		map;
 
 	if (argc != 2)
-	{
-		ft_printf("Please enter just one FDF MAP file.\n");
-		return (EXIT_FAILURE);
-	}
-	if (open_new_window(&map) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		ft_error("Please enter just ONE map file");
+	open_window(&map, "FdF by Jose M. Caballero");
 	if (init_map(argv[1], &map) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	fill_points(&map);

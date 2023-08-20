@@ -103,7 +103,7 @@ char	*ft_htoa(size_t n, int specifier);
 char	*ft_uitoa(unsigned int n);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 81
+#  define BUFFER_SIZE 255
 # endif
 
 # define FD_MAX 2048
@@ -128,5 +128,6 @@ char	*ft_btoc(char *bits);
 char	*ft_ctob(char *chars);
 
 size_t	ft_wc(char const *str, char c);
+void	ft_error(const char *str);
 
 #endif

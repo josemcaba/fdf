@@ -72,7 +72,13 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re makelibs norma test
+
+norma:
+	norminette *.c *.h libft/*
+
+test:
+	leaks --atExit -- ./fdf test_maps/42.fdf
 
 DEF_COLOR = \033[0;39m
 BLACK	  =	\033[0;30m

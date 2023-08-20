@@ -41,16 +41,11 @@ static void	set_menu(t_map *map)
 	map->menu = mlx_put_string(map->mlx, "", 0, 0);
 }
 
-static int	open_new_window(t_map *map)
+static void	open_window(t_map *map, char *str)
 {
-	map->mlx = mlx_init(WIDTH, HEIGHT, \
-			"FdF by Jose M. Caballero", true);
+	map->mlx = mlx_init(WIDTH, HEIGHT, str, true);
 	if (!map->mlx)
-	{
-		ft_printf("Can not open a new window.\n");
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+		ft_error("ERROR: mlx_init at fdf_bonus.c (line 46)");
 }
 
 static int	init_map(char *fname, t_map *map)
@@ -61,7 +56,7 @@ static int	init_map(char *fname, t_map *map)
 	map->height = 0;
 	map->scale = 0;
 	map->z_scale = 0.08;
-	map->constant_color = 1;
+	map->constant_color = 0;
 	map->base_color = 0xe3f50aff;
 	map->triangles = 0;
 	map->img = NULL;
@@ -101,12 +96,8 @@ int	main(int argc, char **argv)
 	t_map		map;
 
 	if (argc != 2)
-	{
-		ft_printf("Please enter just one FDF MAP file.\n");
-		return (EXIT_FAILURE);
-	}
-	if (open_new_window(&map) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+		ft_error("Please enter just ONE map file");
+	open_window(&map, "FdF by Jose M. Caballero");
 	if (init_map(argv[1], &map) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	set_isometric(&map);
