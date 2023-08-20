@@ -11,13 +11,13 @@
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = 	fdf.c read_map.c translate.c perspectives.c plot.c hooks.c colors.c
+SRC  = 	fdf.c read_map.c translate.c plot.c hooks.c colors.c
 INC  = fdf.h
 
 PNAME_B = fdf_bonus
-SRC_B  = fdf_bonus.c read_map.c translate_bonus.c perspectives_bonus.c \
+SRC_B  = fdf_bonus.c read_map.c translate.c perspectives_bonus.c \
 		 plot_bonus.c hooks_bonus.c colors_bonus.c mouse_bonus.c \
-		 achievement.c menu.c
+		 achievement_bonus.c menu_bonus.c
 INC_B  = fdf_bonus.h
 
 LIBFT      = ./libft/libft.a

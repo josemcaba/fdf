@@ -72,10 +72,11 @@ typedef struct s_map
 	int			ymouse;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_image_t	*str;
 }	t_map;
 
 int			read_map_file(char *fname, t_map *map);
-void		free_map(t_map *map, int n_points);
+void		free_map(t_map *map);
 void		fill_row(t_map *map, int y, char *nbrs[]);
 void		render_img(void *param);
 void		pressed_keys(void *param);

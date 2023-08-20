@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-// Calcula la ecuacion de la recta (y = mx + n) que pasa por los dos 
+// @brief Calcula la ecuacion de la recta (y = mx + n) que pasa por los dos 
 // puntos que se pasan como parámetros.
 // Con esa ecuación se representan todos los puntos (pixeles) del
 // intervalo cerrado [p1.x, p2.x]
@@ -46,30 +46,36 @@ static void	plot_line(t_point p1, t_point p2, t_map *map)
 	}
 }
 
+static void	plot_vertical(t_point p1, t_point p2, t_map *map)
+{
+	int	i;
+
+	i = -1;
+	if (p1.y < p2.y)
+		while (++p1.y < p2.y)
+			mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
+	else
+		while (--p1.y > p2.y)
+			mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
+}
+
 static void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	int	steps;
-	int	i;
 
-	if (p1.x == p2.x)
-		steps = fabs(p1.y - p2.y);
-	else
-		steps = steps_counter(p1, p2);
+	steps = steps_counter(p1, p2);
 	if (steps == 0)
 		return ;
 	map->grad = color_gradient(p1.color, p2.color, steps);
 	if (map->grad == NULL)
-		return ;
-	i = -1;
-	if (p1.x == p2.x)
 	{
-		if (p1.y < p2.y)
-			while (++p1.y < p2.y)
-				mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
-		else
-			while (--p1.y > p2.y)
-				mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
+		mlx_close_window(map->mlx);
+		mlx_terminate(map->mlx);
+		free_map(map);
+		ft_error("ERROR: malloc at color.c (line 93)");
 	}
+	if (p1.x == p2.x)
+		plot_vertical(p1, p2, map);
 	else
 		plot_line(p1, p2, map);
 	free(map->grad);
@@ -81,7 +87,7 @@ void	plot_grid(t_map	*map)
 	int		j;
 
 	ft_memset(map->img->pixels, 0, map->img->width * \
-	map->img->height * sizeof(int));
+				map->img->height * sizeof(int));
 	i = -1;
 	while (++i < map->columns)
 	{

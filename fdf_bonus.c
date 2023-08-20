@@ -19,13 +19,13 @@ static void	open_window(t_map *map, char *str)
 		ft_error("ERROR: mlx_init at fdf_bonus.c (line 46)");
 }
 
-static int	init_map(char *fname, t_map *map)
+static int	load_map(char *fname, t_map *map)
 {
 	// map->columns = 0;
 	// map->rows = 0;
 	map->width = 0;
 	map->height = 0;
-	map->scale = 0;
+	// map->scale = 0;
 	map->z_scale = 0.08;
 	map->base_color = 0xe3f50aff;
 	map->img = NULL;
@@ -33,8 +33,7 @@ static int	init_map(char *fname, t_map *map)
 	map->triangles = 0;
 	set_achievement(map);
 	set_menu(map);
-	if (read_map_file(fname, map) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	read_map_file(fname, map);
 	set_initial_scale(map);
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
@@ -63,8 +62,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("ERROR: Please enter just ONE map file");
 	open_window(&map, "FdF by Jose M. Caballero");
-	init_map(argv[1], &map);
-	set_isometric(&map);
+	load_map(argv[1], &map);
+//	set_isometric(&map);
 	mlx_loop_hook(map.mlx, render_img, &map);
 	mlx_loop_hook(map.mlx, pressed_keys, &map);
 	mlx_scroll_hook(map.mlx, mouse_wheel, &map);

@@ -12,6 +12,24 @@
 
 #include "fdf.h"
 
+void	set_triadic_color(t_point *point, t_map *map)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+
+	(*point).color = map->base_color;
+	r = map->base_color >> 24;
+	g = (map->base_color >> 16) & 0xff;
+	b = (map->base_color >> 8) & 0xff;
+	a = map->base_color & 0xff;
+	if ((*point).h == map->h_max)
+		(*point).color = g << 24 | b << 16 | r << 8 | a;
+	if ((*point).h == map->h_min)
+		(*point).color = b << 24 | r << 16 | g << 8 | a;
+}
+
 int	steps_counter(t_point p1, t_point p2)
 {
 	int			steps;
@@ -19,6 +37,8 @@ int	steps_counter(t_point p1, t_point p2)
 	double		n;
 	uint32_t	y_prev;
 
+	if (p1.x == p2.x)
+		return (fabs(p1.y - p2.y));
 	m = (p2.y - p1.y) / (p2.x - p1.x);
 	n = p1.y - (m * p1.x);
 	steps = 0;
@@ -71,7 +91,7 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 	int				i;
 
 	gradient = (uint32_t *)malloc(sizeof(uint32_t) * (steps + 1));
-	if (gradient == NULL)
+	if (!gradient)
 		return (NULL);
 	color1.red = init_color >> 24;
 	color1.green = (init_color >> 16) & 0xFF;
@@ -87,22 +107,4 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 					| (color1.alpha + (int)(delta.alpha * 1));
 	}
 	return (gradient);
-}
-
-void	set_triadic_color(t_point *point, t_map *map)
-{
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-
-	(*point).color = map->base_color;
-	r = map->base_color >> 24;
-	g = (map->base_color >> 16) & 0xff;
-	b = (map->base_color >> 8) & 0xff;
-	a = map->base_color & 0xff;
-	if ((*point).h == map->h_max)
-		(*point).color = g << 24 | b << 16 | r << 8 | a;
-	if ((*point).h == map->h_min)
-		(*point).color = b << 24 | r << 16 | g << 8 | a;
 }

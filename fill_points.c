@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   translate.c                                        :+:      :+:    :+:   */
+/*   fill_points.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,27 @@
 
 #include "fdf.h"
 
-void	update_limits(t_map *map, t_point point)
+static void	zero_adjust(t_map *map)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < map->columns)
+	{
+		j = 0;
+		while (j < map->rows)
+		{
+			map->point[i][j].x -= map->x_min;
+			map->point[i][j].y -= map->y_min;
+			map->point[i][j].h -= map->h_min;
+			set_triadic_color(&map->point[i][j], map);
+			j++;
+		}
+	}
+}
+
+static void	update_limits(t_map *map, t_point point)
 {
 	map->x_max = fmax(map->x_max, point.x);
 	map->x_min = fmin(map->x_min, point.x);
@@ -22,7 +42,7 @@ void	update_limits(t_map *map, t_point point)
 	map->h_min = fmin(map->h_min, point.h);
 }
 
-t_point	translate_coord_to_point(t_map *map, int i, int j)
+static t_point	translate_coord_to_point(t_map *map, int i, int j)
 {
 	t_point	point;
 	double	k;
@@ -44,7 +64,7 @@ t_point	translate_coord_to_point(t_map *map, int i, int j)
 	return (point);
 }
 
-void	reset_limits(t_map *map)
+static void	reset_limits(t_map *map)
 {
 	t_point	point;
 
@@ -55,26 +75,6 @@ void	reset_limits(t_map *map)
 	map->y_min = point.y;
 	map->h_max = point.h;
 	map->h_min = point.h;
-}
-
-static void	zero_adjust(t_map *map)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < map->columns)
-	{
-		j = 0;
-		while (j < map->rows)
-		{
-			map->point[i][j].x -= map->x_min;
-			map->point[i][j].y -= map->y_min;
-			map->point[i][j].h -= map->h_min;
-			set_triadic_color(&map->point[i][j], map);
-			j++;
-		}
-	}
 }
 
 void	fill_points(t_map	*map)

@@ -12,13 +12,6 @@
 
 #include "fdf.h"
 
-static void	open_window(t_map *map, char *str)
-{
-	map->mlx = mlx_init(WIDTH, HEIGHT, str, true);
-	if (!map->mlx)
-		ft_error("ERROR: mlx_init at fdf.c (line 17)");
-}
-
 void	free_map(t_map *map)
 {
 	int	i;
@@ -31,39 +24,76 @@ void	free_map(t_map *map)
 		i++;
 	}
 	free(map->coord);
-	free(map->coord);
+	free(map->point);
 }
 
-static int	init_map(char *fname, t_map *map)
+static void	set_initial_scale(t_map *map)
 {
-	// map->columns = 0;
-	// map->rows = 0;
+	map->alpha = M_PI / 6;
+	map->beta = M_PI / 6;
+	map->scale = 0;
 	map->width = 0;
 	map->height = 0;
-	map->scale = 0;
+	while (map->width < (WIDTH - LEFT_MARGIN) && \
+			map->height < (HEIGHT - 2 * UPPER_MARGIN))
+	{
+		map->scale += 0.1;
+		fill_points(map);
+	}
+}
+
+static void	open_window(t_map *map, char *str)
+{
+	int	idx;
+
+	map->mlx = mlx_init(WIDTH, HEIGHT, str, true);
+	if (!map->mlx)
+	{
+		free_map(map);
+		ft_error("ERROR: mlx_init at fdf.c (line 19)");
+	}
+	map->img = mlx_new_image(map->mlx, map->width, map->height);
+	if (!map->img)
+	{	
+		mlx_close_window(map->mlx);
+		mlx_terminate(map->mlx);
+		free_map(map);
+		ft_error("ERROR: mlx_new_image at fdf.c (line 25)");
+	}
+	idx = mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
+	if (idx < 0)
+	{
+		mlx_close_window(map->mlx);
+		mlx_terminate(map->mlx);
+		free_map(map);
+		ft_error("ERROR: mlx_image_to_window at fdf.c (line 33)");
+	}
+}
+
+static void	load_map(char *fname, t_map *map)
+{
+	read_map_file(fname, map);
 	map->z_scale = 0.08;
 	map->base_color = 0xe3f50aff;
-	map->img = NULL;
-	read_map_file(fname, map);
 	set_initial_scale(map);
-	map->img = mlx_new_image(map->mlx, map->width, map->height);
-	mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
-	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map		map;
+	bool		hook;
 
 	if (argc != 2)
 		ft_error("Please enter just ONE map file");
+	load_map(argv[1], &map);
 	open_window(&map, "FdF by Jose M. Caballero");
-	init_map(argv[1], &map);
-	fill_points(&map);
 	plot_grid(&map);
-	mlx_loop_hook(map.mlx, pressed_keys, &map);
-	mlx_loop(map.mlx);
+	hook = mlx_loop_hook(map.mlx, pressed_keys, &map);
+	if (hook)
+		mlx_loop(map.mlx);
+	else
+		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 83)", 2);
 	mlx_terminate(map.mlx);
 	free_map(&map);
-	return (EXIT_SUCCESS);
+	return (!hook);
 }
