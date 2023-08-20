@@ -28,7 +28,5 @@ void	set_achievement(t_map *map)
 	instance_index = mlx_image_to_window(map->mlx, image, 0, 0);
 	if (instance_index < 0)
 		ft_error("ERROR: mlx_image_to_window at achievement.c (line 28)");
-	map->str = mlx_put_string(map->mlx, "Gomu Gomu Achievement", 260, 640);
-	if (!map->str)
-		ft_error("ERROR: mlx_put_string at achievement.c (line 31)");
+	mlx_put_string(map->mlx, "Gomu Gomu Achievement", 260, 640);
 }

@@ -128,6 +128,6 @@ char	*ft_btoc(char *bits);
 char	*ft_ctob(char *chars);
 
 size_t	ft_wc(char const *str, char c);
-void	ft_error(const char *str);
+void	ft_error(char *str);
 
 #endif

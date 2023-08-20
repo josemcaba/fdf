@@ -72,13 +72,11 @@ typedef struct s_map
 	int			ymouse;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	mlx_image_t	*str;
 }	t_map;
 
 int			read_map_file(char *fname, t_map *map);
 void		free_map(t_map *map, int n_points);
 void		fill_row(t_map *map, int y, char *nbrs[]);
-void		measure_map(int fd, t_map *map);
 void		render_img(void *param);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
@@ -99,5 +97,6 @@ void		set_triadic_color(t_point *point, t_map *map);
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 							int steps, t_map *map);
 void		set_achievement(t_map *map);
+void		set_menu(t_map *map);
 
 #endif

@@ -72,7 +72,6 @@ typedef struct s_map
 int			read_map_file(char *fname, t_map *map);
 void		free_map(t_map *map, int n_points);
 void		fill_row(t_map *map, int y, char *nbrs[]);
-void		measure_map(int fd, t_map *map);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
 void		plot_grid(t_map *map);

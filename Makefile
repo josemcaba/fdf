@@ -11,14 +11,13 @@
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = 	fdf.c read_map1.c read_map2.c translate.c \
-		perspectives.c plot.c hooks.c colors.c
+SRC  = 	fdf.c read_map.c translate.c perspectives.c plot.c hooks.c colors.c
 INC  = fdf.h
 
 PNAME_B = fdf_bonus
-SRC_B  = fdf_bonus.c read_map1.c read_map2.c translate_bonus.c \
-		perspectives_bonus.c plot_bonus.c hooks_bonus.c colors_bonus.c \
-		mouse_bonus.c achievement.c
+SRC_B  = fdf_bonus.c read_map.c translate_bonus.c perspectives_bonus.c \
+		 plot_bonus.c hooks_bonus.c colors_bonus.c mouse_bonus.c \
+		 achievement.c menu.c
 INC_B  = fdf_bonus.h
 
 LIBFT      = ./libft/libft.a
@@ -75,7 +74,7 @@ re : fclean all
 .PHONY: all bonus clean fclean re makelibs norma test
 
 norma:
-	norminette *.c *.h libft/*
+	norminette *.c *.h libft/*.c libft/*.h
 
 test:
 	leaks --atExit -- ./fdf test_maps/42.fdf

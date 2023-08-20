@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	ft_error(const char *str)
+void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
 	ft_putchar_fd('\n', 2);
