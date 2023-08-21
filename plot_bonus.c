@@ -94,10 +94,10 @@ void	plot_grid(t_map	*map)
 	int		i;
 	int		j;
 
-	ft_memset(map->img->pixels, 0, map->img->width * \
-	map->img->height * sizeof(int));
-	if (map->triangles)
-		plot_triangles(map);
+	// ft_memset(map->img->pixels, 0, map->img->width * \
+	// map->img->height * sizeof(int));
+	// if (map->triangles)
+	// 	plot_triangles(map);
 	i = -1;
 	while (++i < map->columns)
 	{

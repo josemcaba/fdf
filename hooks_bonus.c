@@ -12,6 +12,20 @@
 
 #include "fdf_bonus.h"
 
+void	render_img(void *param)
+{
+	t_map	*map;
+
+	map = param;
+	fill_points(map);
+	mlx_resize_image(map->img, map->width, map->height);
+	ft_memset(map->img->pixels, 0, map->img->width * \
+				map->img->height * sizeof(int));
+	plot_grid(map);
+	if (map->triangles)
+		plot_triangles(map);
+}
+
 static void	pressed_keys_2(t_map	*map)
 {
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
@@ -30,6 +44,7 @@ static void	pressed_keys_2(t_map	*map)
 		rotate(map, -1);
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_R))
 		rotate(map, +1);
+	render_img(map);
 }
 
 void	pressed_keys(void *param)
@@ -61,12 +76,3 @@ void	pressed_keys(void *param)
 		pressed_keys_2(map);
 }
 
-void	render_img(void *param)
-{
-	t_map	*map;
-
-	map = param;
-	fill_points(map);
-	mlx_resize_image(map->img, map->width, map->height);
-	plot_grid(map);
-}
