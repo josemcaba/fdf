@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocaball <jocaball@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 12:30:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/20 12:30:17 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:07:58 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void	set_menu(t_map *map)
 	mlx_put_string(map->mlx, ">>> COLOR <<<", MENU_LM, 590);
 	mlx_put_string(map->mlx, "[C] Constant", MENU_LM, 610);
 	mlx_put_string(map->mlx, "[P] Progressive", MENU_LM, 630);
-//	mlx_put_string(map->mlx, "", 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/20 16:10:44 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:14:27 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	fill_coord(int fd, t_map *map)
 
 static void	alloc_map(t_map *map)
 {
-	int	i;
+	uint32_t	i;
 
 	map->coord = malloc(map->columns * sizeof(int *));
 	if (!map->coord)
@@ -92,7 +92,7 @@ static void	measure_map(int fd, t_map *map)
 	while (line)
 	{
 		(map->rows)++;
-		if ((int)ft_wc(line, ' ') > map->columns)
+		if ((uint32_t)ft_wc(line, ' ') > map->columns)
 			map->columns = ft_wc(line, ' ');
 		free(line);
 		line = get_next_line(fd);

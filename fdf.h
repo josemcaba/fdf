@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 12:46:14 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:56:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_map
 {
 	int			**coord;
 	t_point		**point;
-	int			columns;
-	int			rows;
+	uint32_t	columns;
+	uint32_t	rows;
 	double		alpha;
 	double		beta;
 	double		scale;

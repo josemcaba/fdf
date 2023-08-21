@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/18 16:16:00 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:02:15 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	zero_adjust(t_map *map)
 {
-	int		i;
-	int		j;
+	uint32_t	i;
+	uint32_t	j;
 
-	i = -1;
-	while (++i < map->columns)
+	i = 0;
+	while (i < map->columns)
 	{
 		j = 0;
 		while (j < map->rows)
@@ -29,6 +29,7 @@ static void	zero_adjust(t_map *map)
 			set_triadic_color(&map->point[i][j], map);
 			j++;
 		}
+		i++;
 	}
 }
 
@@ -79,9 +80,9 @@ static void	reset_limits(t_map *map)
 
 void	fill_points(t_map	*map)
 {
-	t_point	point;
-	int		i;
-	int		j;
+	t_point		point;
+	uint32_t	i;
+	uint32_t	j;
 
 	reset_limits(map);
 	i = 0;

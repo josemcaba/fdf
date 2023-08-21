@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 14:42:26 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:29:48 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	plot_line(t_point p1, t_point p2, t_map *map)
 
 static void	plot_vertical(t_point p1, t_point p2, t_map *map)
 {
-	int	i;
+	uint32_t	i;
 
 	i = -1;
 	if (p1.y < p2.y)
@@ -83,11 +83,13 @@ static void	plot_segment(t_point p1, t_point p2, t_map *map)
 
 void	plot_grid(t_map	*map)
 {
-	int		i;
-	int		j;
+	uint32_t	i;
+	uint32_t	j;
 
-	ft_memset(map->img->pixels, 0, map->img->width * \
-				map->img->height * sizeof(int));
+	// ft_memset(map->img->pixels, 0, map->img->width * \
+	// 			map->img->height * sizeof(int));
+	// ft_memset(map->img->pixels, 0, map->img->width * \
+	// 			map->img->height * 1);
 	i = -1;
 	while (++i < map->columns)
 	{

@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 12:23:57 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 14:57:16 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_map(t_map *map)
 {
-	int	i;
+	uint32_t	i;
 
 	i = 0;
 	while (i < map->columns)
@@ -50,7 +50,7 @@ static void	open_window(t_map *map, char *str)
 	if (!map->mlx)
 	{
 		free_map(map);
-		ft_error("ERROR: mlx_init at fdf.c (line 19)");
+		ft_error("ERROR: mlx_init at fdf.c (line 49)");
 	}
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	if (!map->img)
@@ -58,7 +58,7 @@ static void	open_window(t_map *map, char *str)
 		mlx_close_window(map->mlx);
 		mlx_terminate(map->mlx);
 		free_map(map);
-		ft_error("ERROR: mlx_new_image at fdf.c (line 25)");
+		ft_error("ERROR: mlx_new_image at fdf.c (line 55)");
 	}
 	idx = mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
 	if (idx < 0)
@@ -72,9 +72,9 @@ static void	open_window(t_map *map, char *str)
 
 static void	load_map(char *fname, t_map *map)
 {
-	read_map_file(fname, map);
 	map->z_scale = 0.08;
 	map->base_color = 0xe3f50aff;
+	read_map_file(fname, map);
 	set_initial_scale(map);
 }
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 	bool		hook;
 
 	if (argc != 2)
-		ft_error("Please enter just ONE map file");
+		ft_error("ERROR: Please enter just ONE map file");
 	load_map(argv[1], &map);
 	open_window(&map, "FdF by Jose M. Caballero");
 	plot_grid(&map);
@@ -92,7 +92,7 @@ int	main(int argc, char **argv)
 	if (hook)
 		mlx_loop(map.mlx);
 	else
-		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 83)", 2);
+		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 91)\n", 2);
 	mlx_terminate(map.mlx);
 	free_map(&map);
 	return (!hook);

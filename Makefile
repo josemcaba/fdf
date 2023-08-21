@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/21 12:46:55 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/21 15:11:15 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ USER = $(shell whoami)
 GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g -fsanitize=address
 
 all : makelibs $(PNAME) 
 
@@ -74,7 +74,7 @@ re : fclean all
 .PHONY: all bonus clean fclean re makelibs norma test
 
 norma:
-	norminette *.c *.h libft/*.c libft/*.h
+	norminette *.c *.h libft/*.c libft/*.h | grep Error
 
 test: all
 	leaks --atExit -- ./fdf test_maps/42.fdf
