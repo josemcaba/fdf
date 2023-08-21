@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 10:40:57 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:46:14 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,6 @@ void		free_map(t_map *map);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
 void		plot_grid(t_map *map);
-void		set_initial_scale(t_map *map);
-t_point		translate_coord_to_point(t_map *map, int i, int j);
-void		reset_limits(t_map *map);
-void		update_limits(t_map *map, t_point point);
 int			steps_counter(t_point p1, t_point p2);
 void		set_triadic_color(t_point *point, t_map *map);
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, int steps);
