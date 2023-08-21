@@ -54,7 +54,7 @@ static void	open_window(t_map *map, char *str)
 	}
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	if (!map->img)
-	{	
+	{
 		mlx_close_window(map->mlx);
 		mlx_terminate(map->mlx);
 		free_map(map);

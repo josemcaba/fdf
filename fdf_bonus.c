@@ -54,7 +54,7 @@ static void	open_window(t_map *map, char *str)
 	}
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	if (!map->img)
-	{	
+	{
 		mlx_close_window(map->mlx);
 		mlx_terminate(map->mlx);
 		free_map(map);
@@ -92,8 +92,6 @@ int	main(int argc, char **argv)
 	load_map(argv[1], &map);
 	open_window(&map, "FdF by Jose M. Caballero");
 	plot_grid(&map);
-	//set_isometric(&map);
-	//mlx_loop_hook(map.mlx, render_img, &map);
 	hook = mlx_loop_hook(map.mlx, pressed_keys, &map);
 	if (hook)
 	{

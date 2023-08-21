@@ -12,7 +12,7 @@
 
 #ifdef BONUS
 # include "fdf_bonus.h"
-# else
+#else
 # include "fdf.h"
 #endif
 

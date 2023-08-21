@@ -75,10 +75,10 @@ static void	plot_segment(t_point p1, t_point p2, t_map *map)
 	free(map->grad);
 }
 
-static void	plot_triangles(t_map *map)
+void	plot_triangles(t_map *map)
 {
-	int		i;
-	int		j;
+	uint32_t	i;
+	uint32_t	j;
 
 	j = -1;
 	while (++j < map->rows - 1)
@@ -91,13 +91,9 @@ static void	plot_triangles(t_map *map)
 
 void	plot_grid(t_map	*map)
 {
-	int		i;
-	int		j;
+	uint32_t	i;
+	uint32_t	j;
 
-	// ft_memset(map->img->pixels, 0, map->img->width * \
-	// map->img->height * sizeof(int));
-	// if (map->triangles)
-	// 	plot_triangles(map);
 	i = -1;
 	while (++i < map->columns)
 	{

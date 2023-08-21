@@ -75,4 +75,3 @@ void	pressed_keys(void *param)
 	else
 		pressed_keys_2(map);
 }
-

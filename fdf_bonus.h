@@ -50,8 +50,8 @@ typedef struct s_map
 {
 	int			**coord;
 	t_point		**point;
-	int			columns;
-	int			rows;
+	uint32_t	columns;
+	uint32_t	rows;
 	double		alpha;
 	double		beta;
 	double		scale;
@@ -75,21 +75,16 @@ typedef struct s_map
 	mlx_image_t	*str;
 }	t_map;
 
-int			read_map_file(char *fname, t_map *map);
+void		read_map_file(char *fname, t_map *map);
 void		free_map(t_map *map);
-void		fill_row(t_map *map, int y, char *nbrs[]);
 void		render_img(void *param);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
 void		plot_grid(t_map *map);
-void		set_initial_scale(t_map *map);
 void		set_isometric(t_map *map);
 void		set_military(t_map *map);
 void		set_cavalier(t_map *map);
-t_point		translate_coord_to_point(t_map *map, int i, int j);
 void		rotate(t_map *map, int direction);
-void		reset_limits(t_map *map);
-void		update_limits(t_map *map, t_point point);
 int			steps_counter(t_point p1, t_point p2);
 void		mouse_wheel(double xdelta, double ydelta, void *param);
 void		mouse_move(double xpos, double ypos, void *param);
@@ -99,5 +94,6 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 							int steps, t_map *map);
 void		set_achievement(t_map *map);
 void		set_menu(t_map *map);
+void		plot_triangles(t_map *map);
 
 #endif

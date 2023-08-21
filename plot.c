@@ -86,10 +86,6 @@ void	plot_grid(t_map	*map)
 	uint32_t	i;
 	uint32_t	j;
 
-	// ft_memset(map->img->pixels, 0, map->img->width * \
-	// 			map->img->height * sizeof(int));
-	// ft_memset(map->img->pixels, 0, map->img->width * \
-	// 			map->img->height * 1);
 	i = -1;
 	while (++i < map->columns)
 	{
