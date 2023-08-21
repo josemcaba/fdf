@@ -30,7 +30,7 @@ void	set_triadic_color(t_point *point, t_map *map)
 		(*point).color = b << 24 | r << 16 | g << 8 | a;
 }
 
-int	steps_counter(t_point p1, t_point p2)
+uint64_t	steps_counter(t_point p1, t_point p2)
 {
 	int			steps;
 	double		m;

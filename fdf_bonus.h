@@ -76,6 +76,8 @@ typedef struct s_map
 }	t_map;
 
 void		read_map_file(char *fname, t_map *map);
+void		set_initial_scale(t_map *map);
+void		open_window(t_map *map, char *str);
 void		free_map(t_map *map);
 void		render_img(void *param);
 void		pressed_keys(void *param);
@@ -85,7 +87,7 @@ void		set_isometric(t_map *map);
 void		set_military(t_map *map);
 void		set_cavalier(t_map *map);
 void		rotate(t_map *map, int direction);
-int			steps_counter(t_point p1, t_point p2);
+uint64_t			steps_counter(t_point p1, t_point p2);
 void		mouse_wheel(double xdelta, double ydelta, void *param);
 void		mouse_move(double xpos, double ypos, void *param);
 void		mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);

@@ -70,11 +70,13 @@ typedef struct s_map
 }	t_map;
 
 void		read_map_file(char *fname, t_map *map);
+void		set_initial_scale(t_map *map);
+void		open_window(t_map *map, char *str);
 void		free_map(t_map *map);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
 void		plot_grid(t_map *map);
-int			steps_counter(t_point p1, t_point p2);
+uint64_t	steps_counter(t_point p1, t_point p2);
 void		set_triadic_color(t_point *point, t_map *map);
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, int steps);
 

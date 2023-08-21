@@ -12,7 +12,7 @@
 
 #include "fdf_bonus.h"
 
-int	steps_counter(t_point p1, t_point p2)
+uint64_t	steps_counter(t_point p1, t_point p2)
 {
 	int			steps;
 	double		m;
@@ -41,7 +41,7 @@ int	steps_counter(t_point p1, t_point p2)
 
 static t_delta_color	get_delta(	uint32_t init_color, \
 									uint32_t end_color, \
-									int steps)
+									uint64_t steps)
 {
 	t_color			color1;
 	t_color			color2;
@@ -63,7 +63,7 @@ static t_delta_color	get_delta(	uint32_t init_color, \
 }
 
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
-							int steps, t_map *map)
+							uint64_t steps, t_map *map)
 {
 	uint32_t		*gradient;
 	t_color			color1;

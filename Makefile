@@ -11,14 +11,14 @@
 # **************************************************************************** #
 
 PNAME = fdf
-SRC  = 	fdf.c read_map.c fill_points.c plot.c hooks.c colors.c
+SRC  = 	fdf.c read_map.c fill_points.c plot.c hooks.c colors.c open_window.c
 INC  = fdf.h
 
 PNAME_B = fdf_bonus
 SRC_B  = fdf_bonus.c read_map.c fill_points.c perspectives_bonus.c \
 		 plot_bonus.c hooks_bonus.c colors_bonus.c mouse_bonus.c \
-		 achievement_bonus.c menu_bonus.c
-INC_B  = fdf_bonus.h
+		 achievement_bonus.c menu_bonus.c open_window.c
+INC_B  = fdf_bonus.h 
 
 LIBFT      = ./libft/libft.a
 MAKE_LIBFT = @make -sC ./libft
@@ -30,7 +30,7 @@ USER = $(shell whoami)
 GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g  -fsanitize=address
 
 all : makelibs $(PNAME) 
 

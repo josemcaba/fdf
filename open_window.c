@@ -31,7 +31,7 @@ void	free_map(t_map *map)
 	free(map->point);
 }
 
-static void	set_initial_scale(t_map *map)
+void	set_initial_scale(t_map *map)
 {
 	map->alpha = M_PI / 6;
 	map->beta = M_PI / 6;
@@ -46,7 +46,7 @@ static void	set_initial_scale(t_map *map)
 	}
 }
 
-static void	open_window(t_map *map, char *str)
+void	open_window(t_map *map, char *str)
 {
 	int	idx;
 
