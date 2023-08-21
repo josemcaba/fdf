@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifdef BONUS
+# include "fdf_bonus.h"
+# else
+# include "fdf.h"
+#endif
 
 static void	zero_adjust(t_map *map)
 {

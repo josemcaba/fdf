@@ -53,7 +53,7 @@ $(NAME_B):
 	$(LIBFT) $(MLX42) $(PNAME_B)
 
 $(PNAME_B): $(LIBFT) $(MLX42) $(SRC_B) $(INC_B)
-	@$(CC) $(CFLAGS) $(SRC_B) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME)
+	@$(CC) -DBONUS $(CFLAGS) $(SRC_B) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME)
 	@echo "$(GREEN)\n-------> Program $(YELLOW)$(PNAME) bonus$(GREEN) has been created\n$(DEF_COLOR)"
 
 makelibs :
