@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perspectives_bonus.c                               :+:      :+:    :+:   */
+/*   views_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -53,4 +53,18 @@ void	rotate(t_map *map, int direction)
 	fill_points(map);
 	map->img->instances[0].x += width - map->width / 2;
 	map->img->instances[0].y += height - map->height / 2;
+}
+
+void	plot_triangles(t_map *map)
+{
+	uint32_t	i;
+	uint32_t	j;
+
+	j = -1;
+	while (++j < map->rows - 1)
+	{
+		i = -1;
+		while (++i < (map->columns - 1))
+			plot_segment(map->point[i][j], map->point[i + 1][j + 1], map);
+	}
 }

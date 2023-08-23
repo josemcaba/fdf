@@ -16,6 +16,8 @@ static void	load_map(char *fname, t_map *map)
 {
 	map->z_scale = 0.08;
 	map->base_color = 0xe3f50aff;
+	map->coord = NULL;
+	map->mlx = NULL;
 	map->constant_color = 0;
 	map->triangles = 0;
 	read_map_file(fname, map);
@@ -44,7 +46,8 @@ int	main(int argc, char **argv)
 	}
 	else
 		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 91)\n", 2);
-	mlx_terminate(map.mlx);
 	free_map(&map);
+//	mlx_delete_image(map.mlx, map.img);
+//	mlx_terminate(map.mlx);
 	return (!hook);
 }

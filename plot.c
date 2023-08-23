@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifdef BONUS
+# include "fdf_bonus.h"
+#else
+# include "fdf.h"
+#endif
 
 // @brief Calcula la ecuacion de la recta (y = mx + n) que pasa por los dos 
 // puntos que se pasan como parámetros.
@@ -59,7 +63,7 @@ static void	plot_vertical(t_point p1, t_point p2, t_map *map)
 			mlx_put_pixel(map->img, p1.x, p1.y, map->grad[++i]);
 }
 
-static void	plot_segment(t_point p1, t_point p2, t_map *map)
+void	plot_segment(t_point p1, t_point p2, t_map *map)
 {
 	int	steps;
 

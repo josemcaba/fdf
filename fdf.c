@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	if (hook)
 		mlx_loop(map.mlx);
 	else
-		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 36)\n", 2);
+		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 35)\n", 2);
 	free_map(&map);
 //	mlx_delete_image(map.mlx, map.img);
 //	mlx_terminate(map.mlx);

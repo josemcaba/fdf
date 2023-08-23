@@ -78,6 +78,7 @@ typedef struct s_map
 void		read_map_file(char *fname, t_map *map);
 void		set_initial_scale(t_map *map);
 void		open_window(t_map *map, char *str);
+void		error_exit(char *str, t_map *map);
 void		free_map(t_map *map);
 void		render_img(void *param);
 void		pressed_keys(void *param);
@@ -97,5 +98,6 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 void		set_achievement(t_map *map);
 void		set_menu(t_map *map);
 void		plot_triangles(t_map *map);
+void		plot_segment(t_point p1, t_point p2, t_map *map);
 
 #endif

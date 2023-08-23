@@ -68,5 +68,6 @@ void	open_window(t_map *map, char *str)
 		error_exit("ERROR: mlx_new_image at open_window.c (line 66)", map);
 	idx = mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
 	if (idx < 0)
-		error_exit("ERROR: mlx_image_to_window at open_window.c (line 69)", map);
+		error_exit("ERROR: mlx_image_to_window at open_window.c (line 69)", \
+					map);
 }
