@@ -18,5 +18,9 @@ void	pressed_keys(void *param)
 
 	map = param;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+	{
 		mlx_close_window(map->mlx);
+		// mlx_delete_image(map->mlx, map->img);
+		// mlx_terminate(map->mlx);
+	}
 }

@@ -32,24 +32,21 @@ static void	fill_row(t_map *map, int j, char *nbrs[])
 
 static void	fill_coord(int fd, t_map *map)
 {
-	char	*line;
-	char	**nbrs;
-	int		row;
+	char		*line;
+	char		**nbrs;
+	uint32_t	row;
 
 	row = 0;
-	while (true)
+	while (row < map->rows)
 	{
 		line = get_next_line(fd);
-		if (!line)
-			break ;
 		line[ft_strlen(line) - 1] = '\0';
 		nbrs = ft_split(line, ' ');
 		if (!nbrs)
 		{
 			close (fd);
 			free(line);
-			free_map(map);
-			ft_error("ERROR: ft_split at read_map.c (line 42)");
+			error_exit("ERROR: ft_split at read_map.c (line 46)", map);
 		}
 		fill_row(map, row, nbrs);
 		free(line);
@@ -64,23 +61,19 @@ static void	alloc_map(t_map *map)
 
 	map->coord = malloc(map->columns * sizeof(int *));
 	if (!map->coord)
-		ft_error("ERROR: malloc at read_map.c (line 61)");
+		error_exit("ERROR: malloc at read_map.c (line 64)", map);
 	map->point = malloc(map->columns * sizeof(t_point *));
 	if (!map->point)
-	{
-		free(map->coord);
-		ft_error("ERROR: malloc at read_map.c (line 64)");
-	}
+		error_exit("ERROR: malloc at read_map.c (line 67)", map);
 	i = 0;
 	while (i < map->columns)
 	{
-		map->coord[i] = malloc(map->rows * sizeof(int));
+		map->coord[i] = ft_calloc(map->rows, sizeof(int));
 		map->point[i] = malloc(map->rows * sizeof(t_point));
 		if (!(map->coord[i]) || !(map->point[i]))
 		{
 			map->columns = i;
-			free_map(map);
-			ft_error("ERROR: malloc at read_map.c (lines 73, 74)");
+			error_exit("ERROR: malloc at read_map.c (lines 73, 74)", map);
 		}
 		i++;
 	}
@@ -88,7 +81,8 @@ static void	alloc_map(t_map *map)
 
 static void	measure_map(int fd, t_map *map)
 {
-	char	*line;
+	char		*line;
+	uint32_t	wc;
 
 	map->rows = 0;
 	map->columns = 0;
@@ -96,14 +90,17 @@ static void	measure_map(int fd, t_map *map)
 	while (line)
 	{
 		(map->rows)++;
-		if ((uint32_t)ft_wc(line, ' ') > map->columns)
-			map->columns = ft_wc(line, ' ');
+		wc = (uint32_t)ft_wc(line, ' ');
+		if (wc > map->columns)
+			map->columns = wc;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	if (map->columns == 0)
-		ft_error("ERROR: Map file is empty");
+		error_exit("ERROR: Map file is empty", map);
+	if ((map->columns == 1) && (map->rows == 1))
+		error_exit("ERROR: Map file has only one point", map);
 }
 
 void	read_map_file(char *fname, t_map *map)
@@ -112,14 +109,11 @@ void	read_map_file(char *fname, t_map *map)
 
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
-		ft_error("ERROR: Can not open the map file");
+		error_exit("ERROR: Can not open the map file", map);
 	measure_map(fd, map);
 	alloc_map(map);
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
-	{
-		free_map(map);
-		ft_error("ERROR: Can not re-open the map file");
-	}
+		error_exit("ERROR: Can not re-open the map file", map);
 	fill_coord(fd, map);
 }

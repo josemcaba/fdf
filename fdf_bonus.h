@@ -40,10 +40,10 @@ typedef struct s_color
 
 typedef struct s_delta_color
 {
-	int	red;
-	int	green;
-	int	blue;
-	int	alpha;
+	double	red;
+	double	green;
+	double	blue;
+	double	alpha;
 }	t_delta_color;
 
 typedef struct s_map
@@ -93,7 +93,7 @@ void		mouse_move(double xpos, double ypos, void *param);
 void		mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);
 void		set_triadic_color(t_point *point, t_map *map);
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
-							int steps, t_map *map);
+							uint64_t steps, t_map *map);
 void		set_achievement(t_map *map);
 void		set_menu(t_map *map);
 void		plot_triangles(t_map *map);

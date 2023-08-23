@@ -66,14 +66,9 @@ static void	plot_segment(t_point p1, t_point p2, t_map *map)
 	steps = steps_counter(p1, p2);
 	if (steps == 0)
 		return ;
-	map->grad = color_gradient(p1.color, p2.color, steps);
+	map->grad = color_gradient(p1.color, p2.color, steps, map);
 	if (map->grad == NULL)
-	{
-		mlx_close_window(map->mlx);
-		mlx_terminate(map->mlx);
-		free_map(map);
-		ft_error("ERROR: malloc at color.c (line 93)");
-	}
+		error_exit("ERROR: malloc at color.c (line 97)", map);
 	if (p1.x == p2.x)
 		plot_vertical(p1, p2, map);
 	else

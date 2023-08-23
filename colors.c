@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifdef BONUS
+# include "fdf_bonus.h"
+#else
+# include "fdf.h"
+#endif
 
 void	set_triadic_color(t_point *point, t_map *map)
 {
@@ -24,9 +28,9 @@ void	set_triadic_color(t_point *point, t_map *map)
 	g = (map->base_color >> 16) & 0xff;
 	b = (map->base_color >> 8) & 0xff;
 	a = map->base_color & 0xff;
-	if ((*point).h == map->h_max)
+	if ((*point).h >= (map->h_max * 2 / 3))
 		(*point).color = g << 24 | b << 16 | r << 8 | a;
-	if ((*point).h == map->h_min)
+	if ((*point).h <= map->h_max / 3)
 		(*point).color = b << 24 | r << 16 | g << 8 | a;
 }
 
@@ -61,7 +65,7 @@ uint64_t	steps_counter(t_point p1, t_point p2)
 
 static t_delta_color	get_delta(uint32_t init_color,
 									uint32_t end_color, \
-									int steps)
+									uint64_t steps)
 {
 	t_color			color1;
 	t_color			color2;
@@ -75,20 +79,20 @@ static t_delta_color	get_delta(uint32_t init_color,
 	color2.green = (end_color >> 16) & 0xFF;
 	color2.blue = (end_color >> 8) & 0xFF;
 	color2.alpha = end_color & 0xFF;
-	delta.red = (color2.red - color1.red) / steps;
-	delta.green = (color2.green - color1.green) / steps;
-	delta.blue = (color2.blue - color1.blue) / steps;
-	delta.alpha = (color2.alpha - color1.alpha) / steps;
+	delta.red = (double)(color2.red - color1.red) / (double)steps;
+	delta.green = (double)(color2.green - color1.green) / (double)steps;
+	delta.blue = (double)(color2.blue - color1.blue) / (double)steps;
+	delta.alpha = (double)(color2.alpha - color1.alpha) / (double)steps;
 	return (delta);
 }
 
 uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
-							int steps)
+							uint64_t steps, t_map *map)
 {
 	uint32_t		*gradient;
 	t_color			color1;
 	t_delta_color	delta;
-	int				i;
+	uint64_t		i;
 
 	gradient = (uint32_t *)malloc(sizeof(uint32_t) * (steps + 1));
 	if (!gradient)
@@ -101,6 +105,8 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 	i = -1;
 	while (++i <= steps)
 	{
+		if (map->constant_color)
+			gradient[i] = fmax(init_color, end_color);
 		gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
 					| ((color1.green + (int)(delta.green * i)) << 16) \
 					| ((color1.blue + (int)(delta.blue * i)) << 8) \

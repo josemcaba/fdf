@@ -39,10 +39,10 @@ typedef struct s_color
 
 typedef struct s_delta_color
 {
-	int	red;
-	int	green;
-	int	blue;
-	int	alpha;
+	double	red;
+	double	green;
+	double	blue;
+	double	alpha;
 }	t_delta_color;
 
 typedef struct s_map
@@ -63,6 +63,7 @@ typedef struct s_map
 	int			h_max;
 	int			width;
 	int			height;
+	uint32_t	constant_color;
 	uint32_t	base_color;
 	uint32_t	*grad;
 	mlx_t		*mlx;
@@ -73,11 +74,13 @@ void		read_map_file(char *fname, t_map *map);
 void		set_initial_scale(t_map *map);
 void		open_window(t_map *map, char *str);
 void		free_map(t_map *map);
+void		error_exit(char *str, t_map *map);
 void		pressed_keys(void *param);
 void		fill_points(t_map *map);
 void		plot_grid(t_map *map);
 uint64_t	steps_counter(t_point p1, t_point p2);
 void		set_triadic_color(t_point *point, t_map *map);
-uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, int steps);
+uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
+							uint64_t steps, t_map *map);
 
 #endif

@@ -16,9 +16,9 @@ INC  = fdf.h
 
 PNAME_B = fdf_bonus
 SRC_B  = fdf_bonus.c read_map.c fill_points.c perspectives_bonus.c \
-		 plot_bonus.c hooks_bonus.c colors_bonus.c mouse_bonus.c \
+		 plot_bonus.c hooks_bonus.c colors.c mouse_bonus.c \
 		 achievement_bonus.c menu_bonus.c open_window.c
-INC_B  = fdf_bonus.h 
+INC_B  = fdf_bonus.h
 
 LIBFT      = ./libft/libft.a
 MAKE_LIBFT = @make -sC ./libft
@@ -30,17 +30,17 @@ USER = $(shell whoami)
 GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -g  -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -fsanitize=address
 
-all : makelibs $(PNAME) 
+all : makelibs $(PNAME)
 
-$(NAME): 
+$(NAME):
 	$(LIBFT) $(MLX42) $(PNAME)
 
-$(LIBFT): 
+$(LIBFT):
 	$(MAKE_LIBFT)
 
-$(MLX42): 
+$(MLX42):
 	$(MAKE_MLX42)
 
 $(PNAME): $(LIBFT) $(MLX42) $(SRC) $(INC)
@@ -49,7 +49,7 @@ $(PNAME): $(LIBFT) $(MLX42) $(SRC) $(INC)
 
 bonus: makelibs $(PNAME_B)
 
-$(NAME_B): 
+$(NAME_B):
 	$(LIBFT) $(MLX42) $(PNAME_B)
 
 $(PNAME_B): $(LIBFT) $(MLX42) $(SRC_B) $(INC_B)
@@ -77,6 +77,7 @@ norma:
 	norminette *.c *.h libft/*.c libft/*.h | grep Error
 
 test: all
+	valgrind --leak-check=full ./fdf test_maps/42.fdf
 	leaks --atExit -- ./fdf test_maps/42.fdf
 
 DEF_COLOR = \033[0;39m

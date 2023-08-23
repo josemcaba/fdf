@@ -55,10 +55,11 @@ static t_delta_color	get_delta(	uint32_t init_color, \
 	color2.green = (end_color >> 16) & 0xFF;
 	color2.blue = (end_color >> 8) & 0xFF;
 	color2.alpha = end_color & 0xFF;
-	delta.red = (color2.red - color1.red) / steps;
-	delta.green = (color2.green - color1.green) / steps;
-	delta.blue = (color2.blue - color1.blue) / steps;
-	delta.alpha = (color2.alpha - color1.alpha) / steps;
+	delta.red = (double)(color2.red - color1.red) / (double)steps;
+	delta.green = (double)(color2.green - color1.green) / (double)steps;
+	delta.blue = (double)(color2.blue - color1.blue) / (double)steps;
+	delta.alpha = (double)(color2.alpha - color1.alpha) / (double)steps;
+
 	return (delta);
 }
 
