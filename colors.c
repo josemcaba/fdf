@@ -107,10 +107,11 @@ uint32_t	*color_gradient(uint32_t init_color, uint32_t end_color, \
 	{
 		if (map->constant_color)
 			gradient[i] = fmax(init_color, end_color);
-		gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
-					| ((color1.green + (int)(delta.green * i)) << 16) \
-					| ((color1.blue + (int)(delta.blue * i)) << 8) \
-					| (color1.alpha + (int)(delta.alpha * 1));
+		else
+			gradient[i] = ((color1.red + (int)(delta.red * i)) << 24) \
+						| ((color1.green + (int)(delta.green * i)) << 16) \
+						| ((color1.blue + (int)(delta.blue * i)) << 8) \
+						| (color1.alpha + (int)(delta.alpha * 1));
 	}
 	return (gradient);
 }

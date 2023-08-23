@@ -14,8 +14,8 @@
 # define FDF_H
 # define WIDTH 1900
 # define HEIGHT 700
-# define LEFT_MARGIN 1000
-# define UPPER_MARGIN 50
+# define LEFT_MARGIN 750
+# define UPPER_MARGIN 100
 # define MENU_LM 750
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
@@ -67,12 +67,12 @@ typedef struct s_map
 	uint32_t	constant_color;
 	uint32_t	base_color;
 	uint32_t	*grad;
-	int			triangles;
-	int			xmouse;
-	int			ymouse;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	mlx_image_t	*str;
+	int			triangles;
+	int			xmouse;
+	int			ymouse;
 }	t_map;
 
 void		read_map_file(char *fname, t_map *map);

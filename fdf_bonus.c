@@ -12,6 +12,13 @@
 
 #include "fdf_bonus.h"
 
+static void	plot_bonus(t_map *map)
+{
+	set_isometric(map);
+	set_menu(map);
+	set_achievement(map);
+}
+
 static void	load_map(char *fname, t_map *map)
 {
 	map->z_scale = 0.08;
@@ -22,8 +29,6 @@ static void	load_map(char *fname, t_map *map)
 	map->triangles = 0;
 	read_map_file(fname, map);
 	set_initial_scale(map);
-//	set_achievement(map);
-//	set_menu(map);
 }
 
 int	main(int argc, char **argv)
@@ -35,7 +40,7 @@ int	main(int argc, char **argv)
 		ft_error("ERROR: Please enter just ONE map file");
 	load_map(argv[1], &map);
 	open_window(&map, "FdF by Jose M. Caballero");
-	plot_grid(&map);
+	plot_bonus(&map);
 	hook = mlx_loop_hook(map.mlx, pressed_keys, &map);
 	if (hook)
 	{
