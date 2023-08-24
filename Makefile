@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/24 15:54:37 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/24 19:12:45 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ $(NAME_B):
 	$(LIBFT) $(MLX42) $(PNAME_B)
 
 $(PNAME_B): $(LIBFT) $(MLX42) $(SRC_B) $(INC_B)
-	@$(CC) -DBONUS $(CFLAGS) $(SRC_B) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME)
+	@$(CC) -DBONUS $(CFLAGS) $(SRC_B) $(LIBFT) $(MLX42) $(GLFW) -o $(PNAME_B)
+	@cp fdf_bonus fdf
 	@echo "$(GREEN)\n-------> Program $(YELLOW)$(PNAME) bonus$(GREEN) has been created\n$(DEF_COLOR)"
 
 makelibs :
