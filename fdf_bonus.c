@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 15:04:00 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:15:58 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	plot_bonus(t_map *map)
 {
-	set_isometric(map);
 	set_menu(map);
 	set_achievement(map);
+	set_isometric(map);
 }
 
 static void	load_map(char *fname, t_map *map)
@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 	load_map(argv[1], &map);
 	open_window(&map, "FdF by Jose M. Caballero");
 	plot_bonus(&map);
+	map.img->instances[0].x += 850;
 	hook = mlx_loop_hook(map.mlx, pressed_keys, &map);
 	if (hook)
 	{
@@ -52,7 +53,6 @@ int	main(int argc, char **argv)
 	else
 		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 91)\n", 2);
 	free_map(&map);
-//	mlx_delete_image(map.mlx, map.img);
-//	mlx_terminate(map.mlx);
+	mlx_terminate(map.mlx);
 	return (!hook);
 }

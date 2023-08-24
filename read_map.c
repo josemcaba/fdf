@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 11:05:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 14:14:27 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:21:10 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	fill_coord(int fd, t_map *map)
 		{
 			close (fd);
 			free(line);
-			error_exit("ERROR: ft_split at read_map.c (line 46)", map);
+			error_exit("ERROR: ft_split at read_map.c (line 44)", map);
 		}
 		fill_row(map, row, nbrs);
 		free(line);
@@ -61,10 +61,10 @@ static void	alloc_map(t_map *map)
 
 	map->coord = malloc(map->columns * sizeof(int *));
 	if (!map->coord)
-		error_exit("ERROR: malloc at read_map.c (line 64)", map);
+		error_exit("ERROR: malloc at read_map.c (line 62)", map);
 	map->point = malloc(map->columns * sizeof(t_point *));
 	if (!map->point)
-		error_exit("ERROR: malloc at read_map.c (line 67)", map);
+		error_exit("ERROR: malloc at read_map.c (line 65)", map);
 	i = 0;
 	while (i < map->columns)
 	{
@@ -73,7 +73,7 @@ static void	alloc_map(t_map *map)
 		if (!(map->coord[i]) || !(map->point[i]))
 		{
 			map->columns = i;
-			error_exit("ERROR: malloc at read_map.c (lines 73, 74)", map);
+			error_exit("ERROR: malloc at read_map.c (lines 71, 72)", map);
 		}
 		i++;
 	}

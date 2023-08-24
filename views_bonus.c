@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:03:54 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 20:56:42 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:45:00 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_isometric(t_map *map)
 	map->beta = M_PI / 6;
 	mlx_delete_image(map->mlx, map->str);
 	map->str = mlx_put_string(map->mlx, "ISOMETRIC PERSPECTIVE", \
-								LEFT_MARGIN, 5);
+								MENU_LM, 5);
 }
 
 void	set_military(t_map *map)
@@ -27,7 +27,7 @@ void	set_military(t_map *map)
 	map->beta = M_PI / 3;
 	mlx_delete_image(map->mlx, map->str);
 	map->str = mlx_put_string(map->mlx, "MILITARY PERSPECTIVE", \
-								LEFT_MARGIN, 5);
+								MENU_LM, 5);
 }
 
 void	set_cavalier(t_map *map)
@@ -36,7 +36,7 @@ void	set_cavalier(t_map *map)
 	map->beta = M_PI / 4;
 	mlx_delete_image(map->mlx, map->str);
 	map->str = mlx_put_string(map->mlx, "CAVALIER PERSPECTIVE", \
-								LEFT_MARGIN, 5);
+								MENU_LM, 5);
 }
 
 void	rotate(t_map *map, int direction)

@@ -6,7 +6,7 @@
 #    By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/20 01:47:42 by jocaball          #+#    #+#              #
-#    Updated: 2023/08/21 15:11:15 by jocaball         ###   ########.fr        #
+#    Updated: 2023/08/24 15:54:37 by jocaball         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ USER = $(shell whoami)
 GLFW = -lm -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
 
 all : makelibs $(PNAME)
 
@@ -76,8 +76,7 @@ norma:
 	norminette *.c *.h libft/*.c libft/*.h | grep Error
 
 test: all
-	valgrind --leak-check=full ./fdf test_maps/42.fdf
-	leaks --atExit -- ./fdf test_maps/42.fdf
+	leaks --atExit -- ./fdf "/Users/$(USER)/Documents/42cursus/fdf/test_maps/42subject.fdf"
 
 DEF_COLOR = \033[0;39m
 BLACK	  =	\033[0;30m

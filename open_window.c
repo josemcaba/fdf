@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 14:57:16 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:19:23 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	free_map(t_map *map)
 void	error_exit(char *str, t_map *map)
 {
 	if (map->mlx)
+	{
+		mlx_delete_image(map->mlx, map->img);
 		mlx_close_window(map->mlx);
-		// mlx_terminate(map->mlx);
+		mlx_terminate(map->mlx);
+	}
 	if (map->coord)
 		free_map(map);
 	ft_error(str);
@@ -62,12 +65,12 @@ void	open_window(t_map *map, char *str)
 
 	map->mlx = mlx_init(WIDTH, HEIGHT, str, true);
 	if (!map->mlx)
-		error_exit("ERROR: mlx_init at open_window.c (line 63)", map);
+		error_exit("ERROR: mlx_init at open_window.c (line 66)", map);
 	map->img = mlx_new_image(map->mlx, map->width, map->height);
 	if (!map->img)
-		error_exit("ERROR: mlx_new_image at open_window.c (line 66)", map);
+		error_exit("ERROR: mlx_new_image at open_window.c (line 69)", map);
 	idx = mlx_image_to_window(map->mlx, map->img, LEFT_MARGIN, UPPER_MARGIN);
 	if (idx < 0)
-		error_exit("ERROR: mlx_image_to_window at open_window.c (line 69)", \
+		error_exit("ERROR: mlx_image_to_window at open_window.c (line 72)", \
 					map);
 }

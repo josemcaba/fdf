@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:38:47 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 14:57:16 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:52:35 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	load_map(char *fname, t_map *map)
 {
 	map->z_scale = 0.08;
 	map->base_color = 0xe3f50aff;
+	map->constant_color = 0;
 	map->coord = NULL;
 	map->mlx = NULL;
 	read_map_file(fname, map);
@@ -38,7 +39,6 @@ int	main(int argc, char **argv)
 	else
 		ft_putstr_fd("ERROR: mlx_loop_hook at fdf.c (line 35)\n", 2);
 	free_map(&map);
-//	mlx_delete_image(map.mlx, map.img);
-//	mlx_terminate(map.mlx);
+	mlx_terminate(map.mlx);
 	return (!hook);
 }

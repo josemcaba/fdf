@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 20:45:47 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:32:31 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_H
 # define WIDTH 1900
 # define HEIGHT 700
-# define LEFT_MARGIN 750
-# define UPPER_MARGIN 100
+# define LEFT_MARGIN 80
+# define UPPER_MARGIN 80
 # define MENU_LM 750
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
@@ -88,7 +88,7 @@ void		set_isometric(t_map *map);
 void		set_military(t_map *map);
 void		set_cavalier(t_map *map);
 void		rotate(t_map *map, int direction);
-uint64_t			steps_counter(t_point p1, t_point p2);
+uint64_t	steps_counter(t_point p1, t_point p2);
 void		mouse_wheel(double xdelta, double ydelta, void *param);
 void		mouse_move(double xpos, double ypos, void *param);
 void		mouse_click(mouse_key_t b, action_t a, modifier_key_t m, void *p);

@@ -6,16 +6,16 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:55:42 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/21 12:56:13 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 13:59:10 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIDTH 1400
-# define HEIGHT 900
-# define LEFT_MARGIN 100
-# define UPPER_MARGIN 100
+# define WIDTH 1100
+# define HEIGHT 700
+# define LEFT_MARGIN 80
+# define UPPER_MARGIN 80
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>

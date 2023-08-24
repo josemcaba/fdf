@@ -6,7 +6,7 @@
 /*   By: jocaball <jocaball@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:59:21 by jocaball          #+#    #+#             */
-/*   Updated: 2023/08/19 14:32:32 by jocaball         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:58:13 by jocaball         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	render_img(void *param)
 	fill_points(map);
 	flag = mlx_resize_image(map->img, map->width, map->height);
 	if (!flag)
-		error_exit("ERROR: mlx_resize_image at hooks_bonus.c (line 2)", map);
+		error_exit("ERROR: mlx_resize_image at hooks_bonus.c (line 22)", map);
 	ft_memset(map->img->pixels, 0, map->img->width * \
 				map->img->height * sizeof(int));
 	plot_grid(map);
@@ -47,6 +47,12 @@ static void	pressed_keys_2(t_map	*map)
 		rotate(map, -1);
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_R))
 		rotate(map, +1);
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_P))
+		map->constant_color = 0;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_C))
+		map->constant_color = 1;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_F))
+		map->z_scale = 0;
 	render_img(map);
 }
 
@@ -56,9 +62,10 @@ void	pressed_keys(void *param)
 
 	map = param;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+	{
+		mlx_delete_image(map->mlx, map->img);
 		mlx_close_window(map->mlx);
-		// mlx_delete_image(map->mlx, map->img);
-		// mlx_terminate(map->mlx);
+	}
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_1))
 		set_isometric(map);
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_2))
@@ -73,10 +80,6 @@ void	pressed_keys(void *param)
 		map->z_scale += 0.002;
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 		map->z_scale -= 0.002;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_P))
-		map->constant_color = 0;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_C))
-		map->constant_color = 1;
 	else
 		pressed_keys_2(map);
 }
